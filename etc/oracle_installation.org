@@ -1,0 +1,61 @@
+* 학 습 내 용
+** Oracle 및 Oracle Developer 설치
+***  수업진행을 위해 다음 두개의 프로그램을 다운로드 및 설치하겠어요.
+    1. OracleXE18c
+    2. sqldeveloper19.1
+
+*** 파일 다운로드
+**** oracle express 18c 
+    - 먼저 파일을 다운로드하기 위해 _크롬_ 을 실행하세요.
+    - 크롬주소창에 _oracle express 18c download_ 라고 입력하세요.
+    - 혹시 쿠키에 대한 화면이 뜨면, "모드쿠기수락" 클릭하세요.
+
+**** oarcle sql developer 19.1
+    - 크롬주소창에 _oracle sql developer 19 download_ 라고 입력하세요.
+    - 혹시 쿠키에 대한 화면이 뜨면, "모드쿠기수락" 클릭하세요.
+     
+*** Oracle Express 설치
+    - 다운로드한 파일의 압축을 풀고, _setup.exe_ 응용프로그램을 실행
+    - 동의를 묻는 경우 동의하고, 모든 설정을 바꾸지 않고
+    - _기본설정_ 으로 설치하세요.
+    - 편의를 위해 비밀번호는 _oracle_ 로 하겠어요.
+    - 만약에 다른 비밀번호를 사용하는 경우에 반드시 기억하고 있어야 해요.
+    - 설치에 5분에서 10분정도 걸릴 수 있으니 좀 기다리세요.
+    - [[https://www.youtube.com/watch?time_continue=126&v=CrTo_XoDQwI&feature=emb_logo][Youtube 동영상 참조]]
+    - 설치가 제대로 됐는지 확인해 보겠어요.
+    - Windows Key + r을 누른후 cmd라고 입력하세요.
+
+*** Oracle Developer 설치
+    - 따로 설치가 필요없고,
+    - 단지 압축을 해제하고
+    - 압축이 풀린 폴더내에 있는 _sqldeveloper.exe_ 응용프로그램을 실행
+   
+** Oracle Developer를 사용하여 oracle ex에 연결
+
+    - Oracle Developer를 실행하지 않았다면 _sqldeveloper.exe_ 응용프로그램을 실행
+    - 동영상을 참조하여 SYS 사용자로 로그인, 비밀번호는 _oracle_ 로 하기로 했죠?
+    - 이로서, SYS로 접속에 성공했어요.
+    - [[https://www.youtube.com/watch?v=_y8-NtVPyKk][Youtube 동영상참조]]
+    - scott라는 사용자 추가 [[https://www.databasestar.com/intro-sql-bonuses/][사용자 추가를 위한 sql 스크립트 링크]]
+    - scott로 로그인 했으면 수업진행을 위한 준비가 끝났어요.
+
+** sql 기본 학습
+   - 기본적인 개념과 각종 sql문법을 익히도록 하겠어요.
+     
+
+#+BEGIN_SRC oracle
+CREATE USER scott IDENTIFIED BY tiger;
+
+GRANT CONNECT TO scott;
+
+GRANT CREATE SESSION, GRANT ANY PRIVILEGE TO scott;
+
+GRANT UNLIMITED TABLESPACE TO scott;
+
+GRANT CREATE TABLE TO scott;
+
+GRANT CREATE VIEW TO scott;
+
+GRANT QUERY REWRITE TO scott;
+#+END_SRC
+     
