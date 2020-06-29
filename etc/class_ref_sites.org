@@ -1,0 +1,10 @@
+* jsp related site
+  1. https://gmlwjd9405.github.io/2018/11/03/jsp.html
+  2. https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html
+  3. https://gmlwjd9405.github.io/2018/11/04/servlet-vs-jsp.html
+  4. https://www.programmergate.com/pass-data-servlet-jsp/
+  5. https://coding-factory.tistory.com/29
+  6. [[https://www.youtube.com/watch?v=maLrgeY0InA][how to unlock hr sample user in oracle database 18c]]
+  7. https://huskdoll.tistory.com/856
+  8. [[https://www.youtube.com/watch?v=z0dfSom97GU][how to connect HR sample user with oracle database 18c]]
+
