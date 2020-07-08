@@ -1,0 +1,796 @@
+* Intro
+  
+** tools
+   1. jdk(13.1)
+   2. eclipse
+   3. tomcat(8)
+   4. oracle(11g)
+      
+** languages
+   1. java
+   2. jsp
+   3. servlet
+   4. sql - database
+   5. css
+   6. html
+
+      
+** [[https://gangzzang.tistory.com/entry/%EC%9D%B4%ED%81%B4%EB%A6%BD%EC%8A%A4-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-UTF8-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%84%A4%EC%A0%95][Eclipse Text Encoding UTF-8]] 
+
+* Web Programming
+
+** Lec 1.
+   
+*** Web App 
+   - 웹을 기반으로 동작되는 프로그램.
+     
+*** 용어정의
+    - protocol : 통신규약(http, ftp, smtp, pop. dhcp)
+    - IP       : 네트워트상에서 컴퓨터를 식별 할 수 있는 주소
+    - DNS      : IP주소를 인간이 쉽게 이해 할 수 있도록 맵핑한 문자열
+    - Port     : IP주소가 컴퓨터를 식별, 해당 컴퓨터에서 구동되고 있는 프로램을 구분할 수 있는 번호
+    - http://wwww.sba.seoul.kr:80/kr/index
+       |             |          |   |-> information path
+       |	     |		|-> port
+       |	     |-> 컴퓨터 주소
+       |-> 프로토콜
+    
+** Lec 2. tool installation
+   
+*** eclipse utf-8
+    - Menu -> window -> General -> Workspace -> Text file encoding
+
+** Lec 3. jsp intro
+
+** Lec 4. servlet intro
+
+
+** Lec 5. dive into servlet
+   - Servlet은 java언어를 사용하여 웹프로그램을 제작하는것
+     
+*** methods
+**** doGet
+     - URL 값으로 정보가 전송되어 보안에 취약
+     - HTML내 form tag method 속성값 = get
+     - 웹브라우저의 주소창을 이용하여 servlet를 요청한 경우에도 호출
+     - 메개변수로 HttpServletRequest와 HttpServletresponse를 받는다.
+**** doPost
+     - header에 정보를 실어 전송하므로 보안에 강함
+     - HTML내 form tag method 속성값 = post
+       
+*** Context Path
+    - WAS(Web Application Server)에서 웹어플리케이션을 구분하기 위한 path
+    - 이클립스에서 프로젝트를 생성하면, 자동으로 server.xml에 추가 됩니다.
+    - 해당 Application의 이름
+      
+** Lec 6 
+   
+*** Servlet 장동 순서 
+   - 클라이언트에서 servlet요청이 들어오면 서버는 servlet컨테이너를 만들고, 요청이 있을 때마다 쓰레드를 생성
+   - 웹크라우저 -> 웹서버 -> 웹어플리케이션 서버(WAS) -> servlet 컨테이너(1. 쓰레드생성, 2. servlet객체생성)
+   - Servlet vs other cgi(jsp)
+     - cgi -> 요청이 들어올 때마다 객체를 생성되고, 서버의 메모리에 상주, 서버의 성능이 저하
+     - servlet -> 요청이 들어올 때마다 JVM내에 쓰레드를 생성하므로 성능저하가 적음
+*** Servlet 라이프 사이클 
+    - Servlet의 사용도가 높은 이유는 빠른 응답속도 때문이다.
+    - Servlet은 최초 요청시 객체가 만들어져 메모리에 로딩되고, 이후 요청에는 기존의 객체를 재사용한다. 따라서 빠르다.
+    - Servlet 객체생성 -> Init()호출 -> *{service(), doGet(), doPost()}매요청시* -> destroy()호출
+      
+*** Servlet 선처리, 후처리
+    #+BEGIN_SRC java
+    @PostConstruct
+    private void initPostConstruct(){
+	System.out.println("initPostconstruct");
+    }
+    @PreDestroy
+    private void destroyPreDestory(){
+	System.out.println("destroypredestory");
+    }
+    #+END_SRC
+    
+** Led 7 Servlet 본격적으로 살펴보기
+   - HTML Form tag
+   - Servlet Parameter
+   - 한글처리
+***  HTML Form tag
+    - Html의 Form 태그는 서버쪽으로 정보를 전달할 때 사용하는 태그
+    - input 태그들의 값을 전송하기 위한 정보를 담고 있다.
+    - Get:http://주소:port번호/컨텍스트/path/MemberJoin?id="abcdefg"&name="홍길동"
+    - Post:http://주소:port번호/컨텍스트/path/MemberJoin
+    
+#+BEGIN_SRC html
+<form action="PostMethod" method="post">
+                   |              |
+		   |		  |-> 요청을 처리하는 방식(ex. get, post)
+		   |-> url mapping name, 요청한는 컴포넌트 이름
+		   (ex. join.jsp, info.html, HWorld)
+		           |          |          |-> mapping 명
+			   |          |-> html file
+#+END_SRC		   |-> jsp file
+      
+**** input
+     - type  : 태그종류(text, password, submit, checkbox, radio, reset)
+     - name  : input 태그 이름
+     - value : name에 해당한는 값(ex. name=value)
+       
+***** type = submit
+      - 일반적인 데이터를 입력하기 위해 사용
+#+BEGIN_SRC html
+<input type="submit" value="전송">
+#+END_SRC
+
+***** type = text
+      - 일반적인 데이터를 입력하기 위해 사용
+#+BEGIN_SRC html
+<input type="text" name="name" size="10">
+#+END_SRC
+
+*****  tyep = password
+      - 로그인, 회원가입 페이지 등에서 비밀번호를 입력하기 위새 사용
+#+BEGIN_SRC html
+<input type="password" name="name" size="10">
+#+END_SRC
+
+*****  tyep = reset
+      - form 내의 데이터를 초기화 할 때
+#+BEGIN_SRC html
+<input type="reset" value="초기화">
+#+END_SRC
+
+*****  tyep = checkbox
+      - 여러개의 데이터 값을 전송해야 할 때 사용
+#+BEGIN_SRC html
+<input type="checkbox" name="hobby" value="reading"> 독서
+<input type="checkbox" name="hobby" value="cooking"> 요리
+<input type="checkbox" name="hobby" value="jogging"> 조깅
+#+END_SRC
+
+*****  tyep = radio
+      - 여러개의 데이터 값을 전송해야 할 때 사용
+#+BEGIN_SRC html
+<input type="radio" name="major" value="kor"> 국어
+<input type="radio" name="major" value="eng" checked="checked"> 영어
+<input type="radio" name="major" value="mat"> 수학
+#+END_SRC
+
+*****  tyep = select
+      - 리스트 형태의 데이터를 사용
+#+BEGIN_SRC html
+<select name="protocol">
+<option value="http"> http </option>
+<option value="ftp" selected="selected"> http </option>
+<option value="smtp"> http </option>
+<option value="pop"> http </option>
+</select>
+#+END_SRC
+
+***  Servlet Parameter
+    - Form태그의 submit버튼을 클릭하여 데이터를 서버로 전송하면, 해당파일(Servlet)에서는
+    - HttpServletRequest객체를 이용하여 Parameter값을 얻을 수 있다.
+    #+BEGIN_SRC java
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("doGett!!! ");
+		
+		String name = request.getParameter("name");
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+
+		String[] hobbis = request.getParameterValues("hobby");
+		String major = request.getParameter("major");
+		String protocol = request.getParameter("protocol");
+		
+		
+
+		response.setContentType("text/html;charset=utf-8"); // set response type as html
+		PrintWriter writer = response.getWriter(); // output stream for webbrowser 
+		writer.println("<html> <head> </head> <body>");
+		writer.println("이름: "+name+ "<br/>");
+		writer.println("아이디: "+id+ "<br/>");
+		writer.println("비번: "+pw+ "<br/>");
+		writer.println("취미: "+ Arrays.toString(hobbis) + "<br/>");
+		writer.println("전공: "+major + "<br/>");
+		writer.println("프로토콜: "+protocol + "<br/>");
+
+		writer.println("</body> </html>");
+		writer.close();
+
+	}
+    #+END_SRC
+      
+**** HTML 파일
+#+BEGIN_SRC html
+<input type="submit" value="전 송">
+#+END_SRC
+
+**** Servlet 파일
+     - HttpServletRequest객체를 이용하여, Parameter값을 얻음.
+#+BEGIN_SRC java
+//getParameter(name); //name에 해당한 값을 반환
+//getParameterValues(name); //check box같이 값이 여러개인경우
+//getParameterNames(); // 이름을 모두 가져온다.
+protected void doPost(HttpServletRequest request, HttpServletResponse response){
+String id = request.getParameter("id");
+String pw = request.getParameter("pw");
+
+response.setContenttype("text/html;utf-8");
+PrintWriter writer = response.getWriter()
+
+writer.println("<html> <head> <body>");
+writer.println("아이디:" + id + "<br/>");
+writer.println("비밀번호:" + pw + "<br/>");
+}
+
+#+END_SRC
+***  한글처리
+    - doGet -> server.xml에 URIEncoding="UTF-8"추가 후 synchronize실행
+    - doPost 다음코드를 코드 제일 위에 추가
+#+BEGIN_SRC java
+request.setCharacterEncoding("UTF-8");
+#+END_SRC
+    - (html파일 수정후 반드시 reload해야 수정사항이 반영됨, ex. get, post수정후)
+** Lec 8. Servlet IV
+   - 서블릴 초기화 파라미터: ServletConfig
+   - 데이터 공유 : ServletContext
+   - 웹어플리케이션 감시: ServletContextListener
+** Lec 9. JSP 본격적으로 살펴보기 I
+   - JSP 태그의 개념 이해
+   - JSP 동작 원리
+   - JSP 내부 객체
+     
+*** JSP 태그의 개념 이해
+    - Servlet은 Java언어를 이용하여 문서를 작성하고, 출력객체를 이용하여 HTML코드를 삽입
+    - JSP는 HTML코드에 JAVA언어를 삽입하여 동적 문서를 작성
+    - HTML내에 JAVA를 삽입하기 위해서는 태그를 이용해야한다.
+**** 태그의 종류
+     - 선언 : string name = "Peter";
+     - 표현식(결과값) : <%= name>
+
+|------------+----------------------------+-------------------|
+| 지시자     | <%@ %>                     | 페이지 속성       |
+| 주석       | <%-- --%>                  |                   |
+| 선언       | <%! %>                     | 변수, 메소드 선언 |
+| 표현식     | <%= %>                     | 출력              |
+| 스크립트릿 | <% %>                      | JAVA코드          |
+| 액션태그   | <jsp:action> </jsp:action> | 자바빈 연결       |
+|------------+----------------------------+-------------------|
+
+*** JSP 동작원리
+    - JSP가 요청되어 응답하기까지의 과정을 이해하면, 개발에 많은 도움이 된다.
+    - 클라이언트가 웹브라우저로 helloWorld.jsp를 요청하면 JSP컨테이너가 JSP파일을 Servlet파일(java)로 변환한다.
+    - 그리고 Servlet파일(JAVA)은 컴파일된 후 클래스 파일(.class)로 변환되고, 요청한 클라이언트에게 html형태로 응답한다.
+    - C:\web_dev\apache-tomcat-8.0.53\work\Catalina\localhost\Coffee\org\apache\jsp
+      
+**** JSP 내부 객체
+     - 개발자가 객체를 생성하지 않고 바로 사용 할 수 있는 객체
+     - JSP에서 제공되는 내부객체는 JSP컨테이너에 의해 Servlet으로 변환될때 자동으로 객체가 생성된다.
+***** 내부 객체의 종류
+      - 입출력 객체 : request, response, out
+      - 서블릿 객체 : page, config
+      - 세션 객체 : session
+      - 예외객체 : exception
+
+** Lec 10. JSP II
+   - 스크립트릿, 선언, 표현식
+   - 지시자
+   - 주석
+*** 스크립트릿, 선언, 표현식 -> JSP 스크립
+    - JSP문서안에 JAVA언어를 넣기 위한 방식, 실제 개발에 많이 쓰이므로 잘 익혀두자. 
+      
+**** 스크립트릿
+#+BEGIN_SRC jsp
+<%
+	int i=0;
+while(true){
+	i++;
+	out.println("2 *" 
+					+ i 
+					+ " = " 
+					+ (2*i) 
+					+ "<br />");
+%>
+==========<br/>
+<%
+if(i>9) break;
+
+}
+
+%>
+#+END_SRC
+
+**** 선언 <%! JAVA 선언문 %>
+     - JSP페이지 내에서 사용되는 변수 또는 메소드를 선언 할 때 사용
+     - 여기서 선언된 변수 및 메소드는 전역의 의미로 사용된다.
+#+BEGIN_SRC jsp
+<%!
+int limit = 10;
+%>
+
+<%!
+public int myDouble(int i){
+return i*2;
+}
+%>
+
+<%
+	int i=0;
+while(true){
+	i++;
+	out.println("2 *" 
+					+ i 
+					+ " = " 
+					+ myDouble(i)
+					+ "<br />");
+%>
+==========<br/>
+<%
+if(i>limit) break;
+
+}
+%>
+
+<%
+out.println("limit = " + limit + "<br/>");
+out.println("myDouble(3) = " + myDouble(3) + "<br/>");
+
+%>
+**** 표현식 <%= JAVA 코드 %>
+     - JSP페이지 내에서 사용되는 변수의 값 또는 메소드 호출 결과값을 출력하기 위해 사용
+     - 결과 값은 String 타입이며, '*;*'를 사용 할 수 없다.
+
+#+BEGIN_SRC jsp
+
+<%= limit %> <br/>
+<%= myDouble(88) %> <br/>
+
+#+END_SRC
+
+**** 지시자 <%@ ~~~ %>
+     - JSP페이지의 전체적인 속성을 지정 할 때 사용
+     - page, include, taglib가 있으며, <%@ 속성 %> 형태로 사용
+
+|---------+------------------------------------|
+| page    | 해당 페이지의 전체적인 속성 지정   |
+|---------+------------------------------------|
+| include | 별도의 페이지를 현재 페이지에 삽입 |
+|---------+------------------------------------|
+| taglib  | 태그 아링브러리의 태그 사용        |
+|---------+------------------------------------|
+***** page 지시자
+#+BEGIN_SRC html
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Arrays" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP Scriptlet Test </title>
+</head>
+<body>
+
+<%!
+int limit=10;
+int[] iArr = {1,2,3};
+%>
+
+<%
+out.println(Arrays.toString(iArr)+ "<br/>");
+%>
+
+#+END_SRC
+***** include 지시자
+#+BEGIN_SRC html
+<h1> include.jsp 페이지 입니다. </h1> <br/>
+<%@ include file="include01.jsp">
+<h1> 다시 include.jsp 페이지 입니다. </h1> <br/>
+#+END_SRC
+***** taglib 지시자
+      - 사용자가 만든 tag들을 태그라이브러리라 한다. 그리고 이러한 태그라이브러리를 사용하기 위해 taglib지시자를 사용한다.
+      - uri 및 prifix속성이 있으며, uri는 태그라이브러리의 위치 값을 가지며,  prifix는 태그를 가리키는 이름 값을 가진다.
+      - taglib 지시자에 대한 학습은 추후에 살펴볼 JSTL학습 때 다시 살펴보기로 한다.
+
+	
+**** 주석
+     - html <!-- 주석내용 -->
+     - jsp <%-- 주석내용 --%>
+
+** Lec 11. JSP III
+   - request 객체의 이해
+   - response 객체의 이해
+     
+*** request
+    - 웹브라우저를 통해 서버에 어떤 정보를 요청하는 것을 request라 한다.
+    - 그리고 이러한 요청 정보는 request객체가 관리한다.
+    - 웹브라우저      (request) ---> Server
+    -          <--- (Response)
+      
+***** Request객체 관련 메소드
+ |------------------+------------------------------------------|
+ | getContextpath   | 웹어플리케이션의 컨텍스트 패스를 얻는다. |
+ | getMethod()      | get/post방식을 구분 할 수 있다.          |
+ | getSession()     | 세션객체를 얻는다.                       |
+ | getProtocol()    | 해당 프로토콜ㅇㄹ 얻는다.                |
+ | getRequestURL()  | 요청 URL을 얻는다.                       |
+ | getRequestURI()  | URI를 얻는다.                            |
+ | getQueryString() | 쿼리스드링을 얻는다.                     |
+ |------------------+------------------------------------------|
+
+ #+BEGIN_SRC java
+ out.println("서    버:"+ request.getServerName()  + "<br/>");
+ out.println("포트번호:" + request.getServerPort()  + "<br/>");
+ out.println("요청방식:" + request.getMethod()      + "<br/>");
+ out.println("프로토콜:" + request.getProtocol()   + "<br/>");
+ out.println("URL:"     + request.getRequestURL() + "<br/>");
+ out.println("URI:"     + request.getRequestURI() + "<br/>");
+ #+END_SRC
+ 
+**** Parameter 메소드
+     - 앞에서 살펴본 요청관련 메소드 보다 실제 많이 쓰이는 메소드는 parameter와 관련된 메소드이다.
+     - JSP페이지를 제작하는 목적이 데이터 값을 전송하기 위함이므로, parameter관련 메소드는 중요하다.
+
+|---------------------------------+------------------------------------|
+| getParameter(String name)       | name에 해당되는 파라미터 값을 구함 |
+| getParameterNames()             | 모든 파라미터 이름을 구함          |
+| getParameterValues(String name) | name에 해당하는 파라미터 값을 구함 |
+|---------------------------------+------------------------------------|
+
+*** response 객체의 이해
+    - 웹브라우저의 요청에 응답하는 것을 response라하며,
+    - 이러한 응답(response)의 정보를 가지고 있는 객체를 response객체라한다.
+    - 웹브라우저      (request) ---> Server
+    -          <--- (Response)
+      
+|------------------------+---------------------------------------|
+| getCharacterEncoding() | 응답할때 문자의 인코딩 형태를 구한다. |
+| addCookie(Cookie)      | 쿠키를 지정한다.                      |
+| sendRedirect(URL)      | 지정한 URL로 이동한다.                |
+|------------------------+---------------------------------------|
+
+** Lec 12 액션태그
+   - 액션태그란?
+   - forward, include, param 태그 살펴보기
+   - jsp로시작 - <jsp:include>, <jsp:forward>, <jsp:param>
+*** 액션태그?
+    - JSP페이지 내에서 어떤 동작을 하도록 지시하는 태그입니다. 예를 들어 페이지 이동, 페이지 include 등.
+    - 추후에 배울 Bean과 관련된 태그도 있다.
+    - 우선 forward, include, param태그만 살펴보고, 추후 bean을 학습도록 한다.
+*** forward, include, param태그 살펴보기
+*** forward
+    - 현재의 페이지에서 다른 특정페이지로 전환할 때 사용,
+    - 
+#+BEGIN_SRC html
+<!-- main.jsp -->
+<h1> main.jsp페이지 입니다. </h1>
+<jsp:forward page = "sub.jsp"/>
+
+<!-- sub.jsp -->
+<h5> sub.jsp페이지 입니다. </h5>
+
+#+END_SRC
+
+**** param 태그
+     - forward 및 include태그에 *데이터 전달을 목적으로* 사용되는 태그입니다. *이름과 값으로* 이루어져 있습니다.
+#+BEGIN_SRC html
+<jsp:forward page="forward_param.jsp">
+<jsp:param name="id" value="Peter">
+<jsp:param name="pw" value="1234">
+</jsp:forward>
+#+END_SRC
+
+** Lec 13 쿠키란?
+   - 웹브라우저에서 서버로 어떤 데이터를 요청하면, 서버측에서는 알맞은 로직을 수행한 후 데이터를 웹브라우저에 응답 합니다.
+   - 그리고, 서버는 웹브라우저와으이 관계를 종료합니다. 이렇게 웹브라우저에 응답 후 관계를 끊는 것은 http프로토콜의 특징이다.
+   - *연결이 끊겼을 때 어떤 정보를 지속적으로 유지하기 위한 수단으로 쿠키라는 방식을 사용*
+   - 쿠키는 서버에서 생성하여, 서버가 아닌 클라이언트측에 특정 정보를 저장합니다. 그리고 서버에 요청할 때 마다 쿠키의 속성값을 참조 또는 변경할 수 있습니다.
+   - 쿠기는 4Kb로 용량이 제한적이며, 300개까지 데이터 정보를 가질 수 있습니다.
+*** 쿠키사용법
+    - 쿠키는 서버에서 생성되고, ㅋㄹ라이언트측에 전송되어 저장괸가고 하였다.
+    - 쿠키생성방법 및 관련 메소드들을 살펴보자
+    - 쿠키생성 <---------> 속성설정 <---------> response객체에 쿠키탑재
+    - 쿠키클래스사용,      setter이용           response.addCookie()를 이용
+
+** Lec 17. Database
+*** basic(sqlplus)
+**** login as system with pwd 1234
+     - C:\>sqlplus system/1234
+
+**** add user as scott with pwd tiger
+     - SQL>create user scott identified by tiger;
+
+**** 권한주기
+     - SQL>grant connect, resource to scott;
+
+**** 빠져나오고
+     - SQL>exit
+
+**** scott으로 로그인
+     - C:\>sqlplus scott/tiger
+       
+**** Basic Settings
+     - SQL>COL cost 999999
+     - SQL>COL name A15
+     - SQL>COL pcode A10
+     - SQL>SET LINESIZE 200 --> number of characters on a line
+     - SQL>SET PAGESIZE 30 --> ??
+     - SQL>SHOW ALL --> show all setting values(linesize, pagesize)
+
+**** 테이블 만들기
+     - SQL>CREATE CREATE TABLE member(
+       2  id    VARCHAR2(20) PRIMARY KEY,
+       3  pw    VARCHAR2(20),
+       4  name  VARCHAR2(20),
+       5  phone VARCHAR2(20));
+
+**** 테이블 확인
+     - SQL>SELECT * FROM TAB;
+
+**** 레코드 삽입
+     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('abc', '123', '홍길동', '010-2311-3602');
+     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('def', '456', '김대진', '010-2311-3602');
+     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('ghi', '345', '김어진', '010-2311-3602');
+
+**** 레코드 삭제
+     - SQL>DELETE FROM member WHERE name='홍길동';
+
+**** 변경사항 저장
+     - SQL>commit;
+
+**** 테이블 내용 확인
+     - SQL>SELECT * FROM member;
+
+**** 레코드 삭제
+     - SQL>DELETE FROM member WHERE name='홍길동';
+
+**** 데이터 수정
+     - SQL>UPDATE 테이블이름 SET 컬럼이름=값, 컬럼이름=값, 조건; 
+     - SQL>UPDATE member SET pw='000' WHERE id='ghi';
+
+**** 확인
+     - SQL>SELECT * FROM member WHERE id='ghi';
+
+**** 테이블 삭제
+     - SQL>DROP TABLE 테이블이름;
+     - SQL>DROP TABLE member;
+
+**** 확인
+     - SQL>SELECT * FROM tab;
+       
+**** 참조된 테이블 삭제
+     - SQL>ALTER TABLE tbl_salelist_01 DROP CONSTRAINT fk_scode;
+
+     - SQL>DROP TABLE tbl_shop_01;
+
+     - 자료형 :
+       - number : 수치데이터
+       - char : 고정 문자열
+       - varchar2 : 가변길이 문자열
+       
+*** advanced
+**** View
+     - 오라클에서 아주 많이 사용되는 데이터관리용 object
+     - 가상테이블, 원래 테이블은 데이터가 들어 있지만,
+     - View에는 데이터가 없고 원본 테이블에서 데이터를 불러오는 SQL Query만 저장되 있다.
+     - 주로 보안과 사용자 편의성 때문에 사용
+       
+***** Simple View
+      - 생성할 서브 쿼리에 조인 조건이 들어가지 않고,
+      - 1개의 테이블로 만들어 지는 간단한 뷰를 의미
+        #+BEGIN_SRC sql 
+        CREATE [OR REPLACE] [FORCE | NOFORCE] VIEW view_name [(alias, alias, ...)]
+        AS sub-query 
+        [ WITH CHECK OPTION [CONSTRAINT 제약조건]]
+        [ WITH READ ONLY]
+        
+        CREATE OR REPLACE VIEW v_emp1
+        AS 
+	SELECT emp_no, emp_name, hiredate
+        FROM emp;
+        SELECT * FROM v_emp1;
+        #+END_SRC
+***** Complex View
+      - Sub Query 부분에 여러개의 테이블이 Join되어 생성되는 것
+      - 생성 문법은 단순 View와 동일
+        #+BEGIN_SRC sql 
+        CREATE OR REPLACE VIEW v_emp 
+        AS
+        SELECT e.emp_name, d.dep_name 
+        FROM emp e, dept d
+        WHERE e.deptno = d.deptno;
+        
+        SELECT * FROM v_emp;
+        #+END_SRC
+***** Inline View
+      - view는 필요할 때 생성해 놓고 다른 쿼리에서 여러 번 반복해 재사용 할 수 있다.
+      - 그러나 다른 쿼리에서 사용할 필요 없이 해당 SQL에서만 필요한 View일 경우
+      - 번거롭게 View를 생성하지 않고 SQL 문장의 FROM절에 VIEW의 서브쿼리를 바로 적어사용
+        #+BEGIN_SRC sql 
+        SELECT e.deptno, d.dname, e.max_sal 
+        FROM (SELECT deptno, MAX(sal) max_sal 
+              FROM emp 
+              GROUP BY Deptno) e, dept d
+        WHERE e.deptno = d.deptno;
+        #+END_SRC
+***** View 조회 및 삭제
+        #+BEGIN_SRC sql 
+        SET LINE 200 
+        COL view_name for a15
+        COL text for a50
+        col read_only for a10
+        SELECT view_name, text, read_only FROM user_views;
+        #+END_SRC
+
+**** Procedure
+     - 지정된 특정 처리를 생행하는 서브 프로그램의 한 유형으로 단독, 또는 다른 프로시저나 다른 툴(Oracle Developer...)
+     - 또는 다른 환경에서 호출되어 실행
+**** function
+     - 정해진 작업을 수행한 후 값을 반환한다.
+**** Trigger
+     - 서브프로그램 단위의 하나
+     - 테이블, 뷰, 스키마 또는 데이터베이스에 관렬된 PL/SQL 블럭(또는 프로시져)으로 Event가 발생될 때 마다
+     - 연관된 다른 작업이 자동으로 수행된다.
+       
+** Lec 18. JDBC
+   - JAVA 프로그램에서 SQL문을 실행하여 데이터를 관리하기 위한 JAVA *API*
+   - JDBC의 특징: 다양한 데이터 베이스를 JDBC를 이용하여 하나의 프로그램으로 관리 할 수 있다.
+   - 오라클을 설치하면 자동으로 설치되는 클래스 파일을 이클립스로 복사하면 된다.
+*** JAVA && Oracle 연동을 위한 환경설정
+    1. classpath 확인, eclipse -> windows -> preferenecs -> java -> build path -> JRE_LIB
+       #+CAPTION: Eclipse Class Path Check
+       #+NAME:   fig:SED-HR4049
+[[./images/class_path.jpg][class path]]
+    1. ojdbc6_g.jar를 복사하기 
+    2. C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6_g.jar
+    3. -> C:\Program Files\Java\jre1.8.0_251\lib\ext폴더로 복사
+       
+*** 데이터 베이스 연결 순서
+    1. JDBC 드라이버 로드    DriverManager Class.forName("oracle.jdbc.dirver.OracleDriver");
+    2. 데이터 베이스 연결     Connection    DriverManager.getConnection(JdBC URL, 계정아이디, 비밀번호);
+    3. SQL문 실행           Statement     connection.createStatement();
+    4. 데이터 베이스 연결 해제 ResultSet    statement.executeQuery(), statement.executeUpdate();
+       
+*** Statement객체 살펴보기
+    - interface -> executeQuery() : SQL실행 후 여러개의 결과값 생기는 경우 사용.(ex. select)
+    -           -> executeUpdate(): SQL실행 후 테이블의 내용만 변경되는 경우 사용.(ex. insert, delete, update)
+      
+**** executeQuery실행 후 반환되는 레코드 셋
+     - executeQuery() -> ResultSet(next(), previous(), first(), last(), get메소드(getString(), getInt()))
+     - BOF -> 첫번째 row  data, 두번째 row data, 
+       
+|------------------|
+| BOF              |
+| 첫번째 row  data |
+| 두번째 row data, |
+| ...              |
+| N번째 row data   |
+| EOF              |
+|------------------|
+
+       
+*** sqlplus script load
+    - SQL>@c:\aa.sql
+    - C:\>exit | sqlplus scott/tiger @c:\aa.sql
+
+      
+* HTML TAGS
+  - td : a cell in a table
+  - tr : a row in a table
+  - table : a table
+  - input : a input control
+  - script : a client-side script
+  - section : a section in a document
+** [[https://www.w3schools.com/tags/tag_nav.asp][<nav>]]  
+   - defines *a set of navigation links.*
+   - The <nav> element is intended only for major block of navigation links.
+     
+** [[https://www.w3schools.com/tags/ref_standardattributes.asp][ HTML Global Attributes]] 
+   - global attributes are attributes that can be used with all HTML elements.
+*** class
+    - Specifies one or more classnames for an element(refer to a class in a style)
+*** style
+    - specifies an inline CSS style for an element
+     
+      
+** [[https://www.w3schools.com/tags/ref_attributes.asp][HTML Attributes]]
+   - class : Specifies one or more classnames for an element
+   - style : Specifies an inline CSS style for an element
+
+* CSS
+  - the acronym for *Cacading Style Sheet*
+  
+** [[https://www.tutorialspoint.com/css/index.htm][CSS Tutorial]] 
+  
+** [[https://www.w3schools.com/css/css_navbar.asp][CSS Navigation Bar]]
+  
+** [[https://www.w3schools.com/tags/att_global_style.asp][HTML style Attribute]]
+   - Use of the style attribute in an HTML document
+     
+#+BEGIN_SRC html
+<h1 style="color:blue;text-align:center"> This is a header </h1>
+<p style="color:green">This is a paragraph. </p>
+#+END_SRC
+
+** [[https://www.w3schools.com/cssref/css_selectors.asp][CSS Selectors]] 
+*** [[https://www.w3schools.com/cssref/sel_class.asp][CSS .class Selector]]
+    - Select and style all elements with class="intro"
+    #+BEGIN_SRC css
+ .intro{
+ background-color : yellow;
+ }
+    #+END_SRC
+   
+** definition and usage
+   - The .class selector selects elements with a specific class attribute.
+     
+*** Example 1
+    - Style all <p> elements with class="hometown"
+#+BEGIN_SRC css
+p.hometown{
+background-color : yellow
+}
+#+END_SRC
+
+*** Example 2
+    - This <p> element will be styled according to class="center" and to class="large"
+
+    
+** [[https://www.w3schools.com/TAGS/ref_standardattributes.asp][section 태그]]
+   - defines a section in a document
+   - supports the Global Attribute in HTML
+   - supports the Event Attribute in HTML
+    
+** <a> tag
+   - The <a> tag defines a hyperlink, which is used to link from one page to another.
+   - The most important attribute of the <a> element is the href attribute, which indicates the link's destination.
+| Attribute | Value   | Description                                    |
+|-----------+---------+------------------------------------------------|
+| href      | URL     | Specifies the URL of the page the link goes to |
+| target    | _blank  | Specifies where to open the linked document    |
+|           | _parent |                                                |
+|           | _self   |                                                |
+|           | _top    |                                                |
+|-----------+---------+------------------------------------------------|
+
+#+BEGIN_SRC html
+<!-- open a link  in a new brower window -->
+<a href="https://www.w3schools.com" target="_blank">Visit W3Schools.com!</a>
+
+<!-- open a link  to a JavaScript -->
+<a href="javascript:alert('Hello World!');">Execute JavaScript</a>
+#+END_SRC
+
+** <h1>...<h6> 
+   - defines HTML headings
+#+BEGIN_SRC html
+<!-- the Six different HTML headings -->
+<h1>This is heading 1</h1>
+<h2>This is heading 2</h2>
+<h3>This is heading 3</h3>
+<h4>This is heading 4</h4>
+<h5>This is heading 5</h5>
+<h6>This is heading 6</h6>
+#+END_SRC
+
+[[https://www.w3schools.com/TAGS/tag_hn.asp][background color and text color of headings with CSS]]
+#+BEGIN_SRC html
+<!-- Set the background color and text color of headings (with CSS)-->
+<h1 style="background-color:DodgerBlue;">Hello World</h1>
+<h2 style="color:Tomato;">Hello World</h2>
+#+END_SRC
+    
+** form tag
+   - used to create *an HTML form for user input*.
+   - The <form> element can contain one or more of the following elements.
+     - <input>, <textarea>, <button>, <select>, <option>, <optgroup>, <fieldset>, <label>, <output>
+    
+**** Attributes
+     | Attribute | Value    | Description                                                    |
+     |-----------+----------+----------------------------------------------------------------|
+     | name      | text     | the name of the form                                           |
+     | action    | URL      | Specifies where to send the form-data when a form is submited. |
+     | method    | get/post | Specifies the HTTP method to use when sending form-data.       |
+     |-----------+----------+----------------------------------------------------------------|
+    
+* Misc
+** [[https://m.blog.naver.com/goddlaek/220901890910][CGI 그리고 Servlet과 JSP와의 관계]]
+   - CGI
