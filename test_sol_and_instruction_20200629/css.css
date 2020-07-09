@@ -61,3 +61,7 @@ footer {
 footer > h3 {
 	color: #fff;
 }
+select {
+    border: 0;
+    width: 100%;
+}
