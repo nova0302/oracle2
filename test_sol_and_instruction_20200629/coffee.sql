@@ -4,6 +4,8 @@ ALTER TABLE tbl_salelist_01 DROP CONSTRAINT FK_SCODE;
 
 /* 테이블삭제 */
 DROP TABLE tbl_product_01; 
+DROP TABLE tbl_shop_01;
+DROP TABLE tbl_salelist_01;
 
 /* 제품 테이블 만들기 */
 CREATE TABLE tbl_product_01( 
@@ -12,16 +14,11 @@ name  VARCHAR2(20),
 cost  NUMBER(10)
 );
 
-DROP TABLE tbl_shop_01;
-
 /* 매점 테이블 만들기 */
 CREATE TABLE tbl_shop_01(
 scode VARCHAR2(10) NOT NULL PRIMARY KEY,
 sname VARCHAR2(20)
 );
-
-DROP TABLE tbl_salelist_01;
-
 
 /* 판매 정보 테이블 만들기 */
 CREATE TABLE tbl_salelist_01(
@@ -45,8 +42,6 @@ INSERT INTO tbl_product_01 VALUES('AA07', '녹차롤케익', 6500);
 INSERT INTO tbl_product_01 VALUES('AA08', '망고쥬스',   7000);
 INSERT INTO tbl_product_01 VALUES('AA09', '핫쵸코',     2500);
 
-
-
 INSERT INTO tbl_shop_01 VALUES('S001', '강남점'  );
 INSERT INTO tbl_shop_01 VALUES('S002', '강남점'  );
 INSERT INTO tbl_shop_01 VALUES('S003', '강동점'  );
@@ -54,12 +49,15 @@ INSERT INTO tbl_shop_01 VALUES('S004', '강북점'  );
 INSERT INTO tbl_shop_01 VALUES('S005', '동대문점');
 INSERT INTO tbl_shop_01 VALUES('S006', '인천점'  );
 
+/* 시퀀스 삭제 */
 DROP SEQUENCE seq_saleno;
+
+/* 시퀀스 만들고*/
 CREATE SEQUENCE seq_saleno
 START WITH 100001
 INCREMENT BY 1;
 
-/* 판매정보 record 입력*/
+/* 시퀀스를 상요하여 판매정보 record 입력*/
 INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA01', TO_DATE('20200102', 'YYYYMMDD'), 'S001', 50);
 INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA03', TO_DATE('20200202', 'YYYYMMDD'), 'S002', 40);
 INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA04', TO_DATE('20200302', 'YYYYMMDD'), 'S002', 20);

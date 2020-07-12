@@ -640,9 +640,26 @@ out.println(Arrays.toString(iArr)+ "<br/>");
        multiple users.
        
 #+BEGIN_SRC sql
-CREATE SEQUENCE seq_sale_no
-START WITH 100001
+CREATE SEQUENCE seq_saleno
+INCREMENT BY 1
+START WITH 100001;
 
+DROP SEQUENCE seq_no;
+CREATE SEQUENCE seq_no
+START WITH 100;
+SELECT seq_no.NEXTVAL FROM dual;
+SELECT seq_no.CURRVAL FROM dual;
+#+END_SRC
+
+#+BEGIN_SRC java
+	String sql = "SELECT seq_saleno.NEXTVAL saleno FROM dual";	
+	
+	ResultSet rs = stmt.executeQuery(sql);
+	rs.next();
+	int saleno = rs.getInt("saleno");
+	//~~~~~~~~~~~~~~~~~
+	
+<input type="text" name="saleno" value="<%=saleno%>">
 #+END_SRC
     
 *** 데이터베이스 이름 및 user확인
@@ -808,7 +825,6 @@ background-color : yellow
      | method    | get/post | Specifies the HTTP method to use when sending form-data.       |
      |-----------+----------+----------------------------------------------------------------|
     
-     
 * Java Script
 ** [[https://www.w3schools.com/js/js_window.asp][window]]   
 *** [[https://www.w3schools.com/jsref/met_win_open.asp][open()]]
