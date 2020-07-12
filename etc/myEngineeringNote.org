@@ -1,3 +1,4 @@
+#+STARTUP: showeverything
 * Intro
   
 ** tools
@@ -18,22 +19,21 @@
 ** [[https://gangzzang.tistory.com/entry/%EC%9D%B4%ED%81%B4%EB%A6%BD%EC%8A%A4-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-UTF8-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%84%A4%EC%A0%95][Eclipse Text Encoding UTF-8]] 
 
 * Web Programming
-
 ** Lec 1.
    
 *** Web App 
-   - À¥À» ±â¹İÀ¸·Î µ¿ÀÛµÇ´Â ÇÁ·Î±×·¥.
+   - ì›¹ì„ ê¸°ë°˜ìœ¼ë¡œ ë™ì‘ë˜ëŠ” í”„ë¡œê·¸ë¨.
      
-*** ¿ë¾îÁ¤ÀÇ
-    - protocol : Åë½Å±Ô¾à(http, ftp, smtp, pop. dhcp)
-    - IP       : ³×Æ®¿öÆ®»ó¿¡¼­ ÄÄÇ»ÅÍ¸¦ ½Äº° ÇÒ ¼ö ÀÖ´Â ÁÖ¼Ò
-    - DNS      : IPÁÖ¼Ò¸¦ ÀÎ°£ÀÌ ½±°Ô ÀÌÇØ ÇÒ ¼ö ÀÖµµ·Ï ¸ÊÇÎÇÑ ¹®ÀÚ¿­
-    - Port     : IPÁÖ¼Ò°¡ ÄÄÇ»ÅÍ¸¦ ½Äº°, ÇØ´ç ÄÄÇ»ÅÍ¿¡¼­ ±¸µ¿µÇ°í ÀÖ´Â ÇÁ·Î·¥À» ±¸ºĞÇÒ ¼ö ÀÖ´Â ¹øÈ£
+*** ìš©ì–´ì •ì˜
+    - protocol : í†µì‹ ê·œì•½(http, ftp, smtp, pop. dhcp)
+    - IP       : ë„¤íŠ¸ì›ŒíŠ¸ìƒì—ì„œ ì»´í“¨í„°ë¥¼ ì‹ë³„ í•  ìˆ˜ ìˆëŠ” ì£¼ì†Œ
+    - DNS      : IPì£¼ì†Œë¥¼ ì¸ê°„ì´ ì‰½ê²Œ ì´í•´ í•  ìˆ˜ ìˆë„ë¡ ë§µí•‘í•œ ë¬¸ìì—´
+    - Port     : IPì£¼ì†Œê°€ ì»´í“¨í„°ë¥¼ ì‹ë³„, í•´ë‹¹ ì»´í“¨í„°ì—ì„œ êµ¬ë™ë˜ê³  ìˆëŠ” í”„ë¡œë¨ì„ êµ¬ë¶„í•  ìˆ˜ ìˆëŠ” ë²ˆí˜¸
     - http://wwww.sba.seoul.kr:80/kr/index
        |             |          |   |-> information path
        |	     |		|-> port
-       |	     |-> ÄÄÇ»ÅÍ ÁÖ¼Ò
-       |-> ÇÁ·ÎÅäÄİ
+       |	     |-> ì»´í“¨í„° ì£¼ì†Œ
+       |-> í”„ë¡œí† ì½œ
     
 ** Lec 2. tool installation
    
@@ -44,39 +44,38 @@
 
 ** Lec 4. servlet intro
 
-
 ** Lec 5. dive into servlet
-   - ServletÀº java¾ğ¾î¸¦ »ç¿ëÇÏ¿© À¥ÇÁ·Î±×·¥À» Á¦ÀÛÇÏ´Â°Í
+   - Servletì€ javaì–¸ì–´ë¥¼ ì‚¬ìš©í•˜ì—¬ ì›¹í”„ë¡œê·¸ë¨ì„ ì œì‘í•˜ëŠ”ê²ƒ
      
 *** methods
 **** doGet
-     - URL °ªÀ¸·Î Á¤º¸°¡ Àü¼ÛµÇ¾î º¸¾È¿¡ Ãë¾à
-     - HTML³» form tag method ¼Ó¼º°ª = get
-     - À¥ºê¶ó¿ìÀúÀÇ ÁÖ¼ÒÃ¢À» ÀÌ¿ëÇÏ¿© servlet¸¦ ¿äÃ»ÇÑ °æ¿ì¿¡µµ È£Ãâ
-     - ¸Ş°³º¯¼ö·Î HttpServletRequest¿Í HttpServletresponse¸¦ ¹Ş´Â´Ù.
+     - URL ê°’ìœ¼ë¡œ ì •ë³´ê°€ ì „ì†¡ë˜ì–´ ë³´ì•ˆì— ì·¨ì•½
+     - HTMLë‚´ form tag method ì†ì„±ê°’ = get
+     - ì›¹ë¸Œë¼ìš°ì €ì˜ ì£¼ì†Œì°½ì„ ì´ìš©í•˜ì—¬ servletë¥¼ ìš”ì²­í•œ ê²½ìš°ì—ë„ í˜¸ì¶œ
+     - ë©”ê°œë³€ìˆ˜ë¡œ HttpServletRequestì™€ HttpServletresponseë¥¼ ë°›ëŠ”ë‹¤.
 **** doPost
-     - header¿¡ Á¤º¸¸¦ ½Ç¾î Àü¼ÛÇÏ¹Ç·Î º¸¾È¿¡ °­ÇÔ
-     - HTML³» form tag method ¼Ó¼º°ª = post
+     - headerì— ì •ë³´ë¥¼ ì‹¤ì–´ ì „ì†¡í•˜ë¯€ë¡œ ë³´ì•ˆì— ê°•í•¨
+     - HTMLë‚´ form tag method ì†ì„±ê°’ = post
        
 *** Context Path
-    - WAS(Web Application Server)¿¡¼­ À¥¾îÇÃ¸®ÄÉÀÌ¼ÇÀ» ±¸ºĞÇÏ±â À§ÇÑ path
-    - ÀÌÅ¬¸³½º¿¡¼­ ÇÁ·ÎÁ§Æ®¸¦ »ı¼ºÇÏ¸é, ÀÚµ¿À¸·Î server.xml¿¡ Ãß°¡ µË´Ï´Ù.
-    - ÇØ´ç ApplicationÀÇ ÀÌ¸§
+    - WAS(Web Application Server)ì—ì„œ ì›¹ì–´í”Œë¦¬ì¼€ì´ì…˜ì„ êµ¬ë¶„í•˜ê¸° ìœ„í•œ path
+    - ì´í´ë¦½ìŠ¤ì—ì„œ í”„ë¡œì íŠ¸ë¥¼ ìƒì„±í•˜ë©´, ìë™ìœ¼ë¡œ server.xmlì— ì¶”ê°€ ë©ë‹ˆë‹¤.
+    - í•´ë‹¹ Applicationì˜ ì´ë¦„
       
 ** Lec 6 
    
-*** Servlet Àåµ¿ ¼ø¼­ 
-   - Å¬¶óÀÌ¾ğÆ®¿¡¼­ servlet¿äÃ»ÀÌ µé¾î¿À¸é ¼­¹ö´Â servletÄÁÅ×ÀÌ³Ê¸¦ ¸¸µé°í, ¿äÃ»ÀÌ ÀÖÀ» ¶§¸¶´Ù ¾²·¹µå¸¦ »ı¼º
-   - À¥Å©¶ó¿ìÀú -> À¥¼­¹ö -> À¥¾îÇÃ¸®ÄÉÀÌ¼Ç ¼­¹ö(WAS) -> servlet ÄÁÅ×ÀÌ³Ê(1. ¾²·¹µå»ı¼º, 2. servlet°´Ã¼»ı¼º)
+*** Servlet ì¥ë™ ìˆœì„œ 
+   - í´ë¼ì´ì–¸íŠ¸ì—ì„œ servletìš”ì²­ì´ ë“¤ì–´ì˜¤ë©´ ì„œë²„ëŠ” servletì»¨í…Œì´ë„ˆë¥¼ ë§Œë“¤ê³ , ìš”ì²­ì´ ìˆì„ ë•Œë§ˆë‹¤ ì“°ë ˆë“œë¥¼ ìƒì„±
+   - ì›¹í¬ë¼ìš°ì € -> ì›¹ì„œë²„ -> ì›¹ì–´í”Œë¦¬ì¼€ì´ì…˜ ì„œë²„(WAS) -> servlet ì»¨í…Œì´ë„ˆ(1. ì“°ë ˆë“œìƒì„±, 2. servletê°ì²´ìƒì„±)
    - Servlet vs other cgi(jsp)
-     - cgi -> ¿äÃ»ÀÌ µé¾î¿Ã ¶§¸¶´Ù °´Ã¼¸¦ »ı¼ºµÇ°í, ¼­¹öÀÇ ¸Ş¸ğ¸®¿¡ »óÁÖ, ¼­¹öÀÇ ¼º´ÉÀÌ ÀúÇÏ
-     - servlet -> ¿äÃ»ÀÌ µé¾î¿Ã ¶§¸¶´Ù JVM³»¿¡ ¾²·¹µå¸¦ »ı¼ºÇÏ¹Ç·Î ¼º´ÉÀúÇÏ°¡ ÀûÀ½
-*** Servlet ¶óÀÌÇÁ »çÀÌÅ¬ 
-    - ServletÀÇ »ç¿ëµµ°¡ ³ôÀº ÀÌÀ¯´Â ºü¸¥ ÀÀ´ä¼Óµµ ¶§¹®ÀÌ´Ù.
-    - ServletÀº ÃÖÃÊ ¿äÃ»½Ã °´Ã¼°¡ ¸¸µé¾îÁ® ¸Ş¸ğ¸®¿¡ ·ÎµùµÇ°í, ÀÌÈÄ ¿äÃ»¿¡´Â ±âÁ¸ÀÇ °´Ã¼¸¦ Àç»ç¿ëÇÑ´Ù. µû¶ó¼­ ºü¸£´Ù.
-    - Servlet °´Ã¼»ı¼º -> Init()È£Ãâ -> *{service(), doGet(), doPost()}¸Å¿äÃ»½Ã* -> destroy()È£Ãâ
+     - cgi -> ìš”ì²­ì´ ë“¤ì–´ì˜¬ ë•Œë§ˆë‹¤ ê°ì²´ë¥¼ ìƒì„±ë˜ê³ , ì„œë²„ì˜ ë©”ëª¨ë¦¬ì— ìƒì£¼, ì„œë²„ì˜ ì„±ëŠ¥ì´ ì €í•˜
+     - servlet -> ìš”ì²­ì´ ë“¤ì–´ì˜¬ ë•Œë§ˆë‹¤ JVMë‚´ì— ì“°ë ˆë“œë¥¼ ìƒì„±í•˜ë¯€ë¡œ ì„±ëŠ¥ì €í•˜ê°€ ì ìŒ
+*** Servlet ë¼ì´í”„ ì‚¬ì´í´ 
+    - Servletì˜ ì‚¬ìš©ë„ê°€ ë†’ì€ ì´ìœ ëŠ” ë¹ ë¥¸ ì‘ë‹µì†ë„ ë•Œë¬¸ì´ë‹¤.
+    - Servletì€ ìµœì´ˆ ìš”ì²­ì‹œ ê°ì²´ê°€ ë§Œë“¤ì–´ì ¸ ë©”ëª¨ë¦¬ì— ë¡œë”©ë˜ê³ , ì´í›„ ìš”ì²­ì—ëŠ” ê¸°ì¡´ì˜ ê°ì²´ë¥¼ ì¬ì‚¬ìš©í•œë‹¤. ë”°ë¼ì„œ ë¹ ë¥´ë‹¤.
+    - Servlet ê°ì²´ìƒì„± -> Init()í˜¸ì¶œ -> *{service(), doGet(), doPost()}ë§¤ìš”ì²­ì‹œ* -> destroy()í˜¸ì¶œ
       
-*** Servlet ¼±Ã³¸®, ÈÄÃ³¸®
+*** Servlet ì„ ì²˜ë¦¬, í›„ì²˜ë¦¬
     #+BEGIN_SRC java
     @PostConstruct
     private void initPostConstruct(){
@@ -88,73 +87,73 @@
     }
     #+END_SRC
     
-** Led 7 Servlet º»°İÀûÀ¸·Î »ìÆìº¸±â
+** Led 7 Servlet ë³¸ê²©ì ìœ¼ë¡œ ì‚´í´ë³´ê¸°
    - HTML Form tag
    - Servlet Parameter
-   - ÇÑ±ÛÃ³¸®
+   - í•œê¸€ì²˜ë¦¬
 ***  HTML Form tag
-    - HtmlÀÇ Form ÅÂ±×´Â ¼­¹öÂÊÀ¸·Î Á¤º¸¸¦ Àü´ŞÇÒ ¶§ »ç¿ëÇÏ´Â ÅÂ±×
-    - input ÅÂ±×µéÀÇ °ªÀ» Àü¼ÛÇÏ±â À§ÇÑ Á¤º¸¸¦ ´ã°í ÀÖ´Ù.
-    - Get:http://ÁÖ¼Ò:port¹øÈ£/ÄÁÅØ½ºÆ®/path/MemberJoin?id="abcdefg"&name="È«±æµ¿"
-    - Post:http://ÁÖ¼Ò:port¹øÈ£/ÄÁÅØ½ºÆ®/path/MemberJoin
+    - Htmlì˜ Form íƒœê·¸ëŠ” ì„œë²„ìª½ìœ¼ë¡œ ì •ë³´ë¥¼ ì „ë‹¬í•  ë•Œ ì‚¬ìš©í•˜ëŠ” íƒœê·¸
+    - input íƒœê·¸ë“¤ì˜ ê°’ì„ ì „ì†¡í•˜ê¸° ìœ„í•œ ì •ë³´ë¥¼ ë‹´ê³  ìˆë‹¤.
+    - Get:http://ì£¼ì†Œ:portë²ˆí˜¸/ì»¨í…ìŠ¤íŠ¸/path/MemberJoin?id="abcdefg"&name="í™ê¸¸ë™"
+    - Post:http://ì£¼ì†Œ:portë²ˆí˜¸/ì»¨í…ìŠ¤íŠ¸/path/MemberJoin
     
 #+BEGIN_SRC html
 <form action="PostMethod" method="post">
                    |              |
-		   |		  |-> ¿äÃ»À» Ã³¸®ÇÏ´Â ¹æ½Ä(ex. get, post)
-		   |-> url mapping name, ¿äÃ»ÇÑ´Â ÄÄÆ÷³ÍÆ® ÀÌ¸§
+		   |		  |-> ìš”ì²­ì„ ì²˜ë¦¬í•˜ëŠ” ë°©ì‹(ex. get, post)
+		   |-> url mapping name, ìš”ì²­í•œëŠ” ì»´í¬ë„ŒíŠ¸ ì´ë¦„
 		   (ex. join.jsp, info.html, HWorld)
-		           |          |          |-> mapping ¸í
+		           |          |          |-> mapping ëª…
 			   |          |-> html file
 #+END_SRC		   |-> jsp file
       
 **** input
-     - type  : ÅÂ±×Á¾·ù(text, password, submit, checkbox, radio, reset)
-     - name  : input ÅÂ±× ÀÌ¸§
-     - value : name¿¡ ÇØ´çÇÑ´Â °ª(ex. name=value)
+     - type  : íƒœê·¸ì¢…ë¥˜(text, password, submit, checkbox, radio, reset)
+     - name  : input íƒœê·¸ ì´ë¦„
+     - value : nameì— í•´ë‹¹í•œëŠ” ê°’(ex. name=value)
        
 ***** type = submit
-      - ÀÏ¹İÀûÀÎ µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏ±â À§ÇØ »ç¿ë
+      - ì¼ë°˜ì ì¸ ë°ì´í„°ë¥¼ ì…ë ¥í•˜ê¸° ìœ„í•´ ì‚¬ìš©
 #+BEGIN_SRC html
-<input type="submit" value="Àü¼Û">
+<input type="submit" value="ì „ì†¡">
 #+END_SRC
 
 ***** type = text
-      - ÀÏ¹İÀûÀÎ µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏ±â À§ÇØ »ç¿ë
+      - ì¼ë°˜ì ì¸ ë°ì´í„°ë¥¼ ì…ë ¥í•˜ê¸° ìœ„í•´ ì‚¬ìš©
 #+BEGIN_SRC html
 <input type="text" name="name" size="10">
 #+END_SRC
 
 *****  tyep = password
-      - ·Î±×ÀÎ, È¸¿ø°¡ÀÔ ÆäÀÌÁö µî¿¡¼­ ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ±â À§»õ »ç¿ë
+      - ë¡œê·¸ì¸, íšŒì›ê°€ì… í˜ì´ì§€ ë“±ì—ì„œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ê¸° ìœ„ìƒˆ ì‚¬ìš©
 #+BEGIN_SRC html
 <input type="password" name="name" size="10">
 #+END_SRC
 
 *****  tyep = reset
-      - form ³»ÀÇ µ¥ÀÌÅÍ¸¦ ÃÊ±âÈ­ ÇÒ ¶§
+      - form ë‚´ì˜ ë°ì´í„°ë¥¼ ì´ˆê¸°í™” í•  ë•Œ
 #+BEGIN_SRC html
-<input type="reset" value="ÃÊ±âÈ­">
+<input type="reset" value="ì´ˆê¸°í™”">
 #+END_SRC
 
 *****  tyep = checkbox
-      - ¿©·¯°³ÀÇ µ¥ÀÌÅÍ °ªÀ» Àü¼ÛÇØ¾ß ÇÒ ¶§ »ç¿ë
+      - ì—¬ëŸ¬ê°œì˜ ë°ì´í„° ê°’ì„ ì „ì†¡í•´ì•¼ í•  ë•Œ ì‚¬ìš©
 #+BEGIN_SRC html
-<input type="checkbox" name="hobby" value="reading"> µ¶¼­
-<input type="checkbox" name="hobby" value="cooking"> ¿ä¸®
-<input type="checkbox" name="hobby" value="jogging"> Á¶±ë
+<input type="checkbox" name="hobby" value="reading"> ë…ì„œ
+<input type="checkbox" name="hobby" value="cooking"> ìš”ë¦¬
+<input type="checkbox" name="hobby" value="jogging"> ì¡°ê¹…
 #+END_SRC
 
 *****  tyep = radio
-      - ¿©·¯°³ÀÇ µ¥ÀÌÅÍ °ªÀ» Àü¼ÛÇØ¾ß ÇÒ ¶§ »ç¿ë
+      - ì—¬ëŸ¬ê°œì˜ ë°ì´í„° ê°’ì„ ì „ì†¡í•´ì•¼ í•  ë•Œ ì‚¬ìš©
 #+BEGIN_SRC html
-<input type="radio" name="major" value="kor"> ±¹¾î
-<input type="radio" name="major" value="eng" checked="checked"> ¿µ¾î
-<input type="radio" name="major" value="mat"> ¼öÇĞ
+<input type="radio" name="major" value="kor"> êµ­ì–´
+<input type="radio" name="major" value="eng" checked="checked"> ì˜ì–´
+<input type="radio" name="major" value="mat"> ìˆ˜í•™
 #+END_SRC
 
 *****  tyep = select
-      - ¸®½ºÆ® ÇüÅÂÀÇ µ¥ÀÌÅÍ¸¦ »ç¿ë
+      - ë¦¬ìŠ¤íŠ¸ í˜•íƒœì˜ ë°ì´í„°ë¥¼ ì‚¬ìš©
 #+BEGIN_SRC html
 <select name="protocol">
 <option value="http"> http </option>
@@ -165,8 +164,8 @@
 #+END_SRC
 
 ***  Servlet Parameter
-    - FormÅÂ±×ÀÇ submit¹öÆ°À» Å¬¸¯ÇÏ¿© µ¥ÀÌÅÍ¸¦ ¼­¹ö·Î Àü¼ÛÇÏ¸é, ÇØ´çÆÄÀÏ(Servlet)¿¡¼­´Â
-    - HttpServletRequest°´Ã¼¸¦ ÀÌ¿ëÇÏ¿© Parameter°ªÀ» ¾òÀ» ¼ö ÀÖ´Ù.
+    - Formíƒœê·¸ì˜ submitë²„íŠ¼ì„ í´ë¦­í•˜ì—¬ ë°ì´í„°ë¥¼ ì„œë²„ë¡œ ì „ì†¡í•˜ë©´, í•´ë‹¹íŒŒì¼(Servlet)ì—ì„œëŠ”
+    - HttpServletRequestê°ì²´ë¥¼ ì´ìš©í•˜ì—¬ Parameterê°’ì„ ì–»ì„ ìˆ˜ ìˆë‹¤.
     #+BEGIN_SRC java
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -186,12 +185,12 @@
 		response.setContentType("text/html;charset=utf-8"); // set response type as html
 		PrintWriter writer = response.getWriter(); // output stream for webbrowser 
 		writer.println("<html> <head> </head> <body>");
-		writer.println("ÀÌ¸§: "+name+ "<br/>");
-		writer.println("¾ÆÀÌµğ: "+id+ "<br/>");
-		writer.println("ºñ¹ø: "+pw+ "<br/>");
-		writer.println("Ãë¹Ì: "+ Arrays.toString(hobbis) + "<br/>");
-		writer.println("Àü°ø: "+major + "<br/>");
-		writer.println("ÇÁ·ÎÅäÄİ: "+protocol + "<br/>");
+		writer.println("ì´ë¦„: "+name+ "<br/>");
+		writer.println("ì•„ì´ë””: "+id+ "<br/>");
+		writer.println("ë¹„ë²ˆ: "+pw+ "<br/>");
+		writer.println("ì·¨ë¯¸: "+ Arrays.toString(hobbis) + "<br/>");
+		writer.println("ì „ê³µ: "+major + "<br/>");
+		writer.println("í”„ë¡œí† ì½œ: "+protocol + "<br/>");
 
 		writer.println("</body> </html>");
 		writer.close();
@@ -199,17 +198,17 @@
 	}
     #+END_SRC
       
-**** HTML ÆÄÀÏ
+**** HTML íŒŒì¼
 #+BEGIN_SRC html
-<input type="submit" value="Àü ¼Û">
+<input type="submit" value="ì „ ì†¡">
 #+END_SRC
 
-**** Servlet ÆÄÀÏ
-     - HttpServletRequest°´Ã¼¸¦ ÀÌ¿ëÇÏ¿©, Parameter°ªÀ» ¾òÀ½.
+**** Servlet íŒŒì¼
+     - HttpServletRequestê°ì²´ë¥¼ ì´ìš©í•˜ì—¬, Parameterê°’ì„ ì–»ìŒ.
 #+BEGIN_SRC java
-//getParameter(name); //name¿¡ ÇØ´çÇÑ °ªÀ» ¹İÈ¯
-//getParameterValues(name); //check box°°ÀÌ °ªÀÌ ¿©·¯°³ÀÎ°æ¿ì
-//getParameterNames(); // ÀÌ¸§À» ¸ğµÎ °¡Á®¿Â´Ù.
+//getParameter(name); //nameì— í•´ë‹¹í•œ ê°’ì„ ë°˜í™˜
+//getParameterValues(name); //check boxê°™ì´ ê°’ì´ ì—¬ëŸ¬ê°œì¸ê²½ìš°
+//getParameterNames(); // ì´ë¦„ì„ ëª¨ë‘ ê°€ì ¸ì˜¨ë‹¤.
 protected void doPost(HttpServletRequest request, HttpServletResponse response){
 String id = request.getParameter("id");
 String pw = request.getParameter("pw");
@@ -218,67 +217,67 @@ response.setContenttype("text/html;utf-8");
 PrintWriter writer = response.getWriter()
 
 writer.println("<html> <head> <body>");
-writer.println("¾ÆÀÌµğ:" + id + "<br/>");
-writer.println("ºñ¹Ğ¹øÈ£:" + pw + "<br/>");
+writer.println("ì•„ì´ë””:" + id + "<br/>");
+writer.println("ë¹„ë°€ë²ˆí˜¸:" + pw + "<br/>");
 }
 
 #+END_SRC
-***  ÇÑ±ÛÃ³¸®
-    - doGet -> server.xml¿¡ URIEncoding="UTF-8"Ãß°¡ ÈÄ synchronize½ÇÇà
-    - doPost ´ÙÀ½ÄÚµå¸¦ ÄÚµå Á¦ÀÏ À§¿¡ Ãß°¡
+***  í•œê¸€ì²˜ë¦¬
+    - doGet -> server.xmlì— URIEncoding="UTF-8"ì¶”ê°€ í›„ synchronizeì‹¤í–‰
+    - doPost ë‹¤ìŒì½”ë“œë¥¼ ì½”ë“œ ì œì¼ ìœ„ì— ì¶”ê°€
 #+BEGIN_SRC java
 request.setCharacterEncoding("UTF-8");
 #+END_SRC
-    - (htmlÆÄÀÏ ¼öÁ¤ÈÄ ¹İµå½Ã reloadÇØ¾ß ¼öÁ¤»çÇ×ÀÌ ¹İ¿µµÊ, ex. get, post¼öÁ¤ÈÄ)
+    - (htmlíŒŒì¼ ìˆ˜ì •í›„ ë°˜ë“œì‹œ reloadí•´ì•¼ ìˆ˜ì •ì‚¬í•­ì´ ë°˜ì˜ë¨, ex. get, postìˆ˜ì •í›„)
 ** Lec 8. Servlet IV
-   - ¼­ºí¸± ÃÊ±âÈ­ ÆÄ¶ó¹ÌÅÍ: ServletConfig
-   - µ¥ÀÌÅÍ °øÀ¯ : ServletContext
-   - À¥¾îÇÃ¸®ÄÉÀÌ¼Ç °¨½Ã: ServletContextListener
-** Lec 9. JSP º»°İÀûÀ¸·Î »ìÆìº¸±â I
-   - JSP ÅÂ±×ÀÇ °³³ä ÀÌÇØ
-   - JSP µ¿ÀÛ ¿ø¸®
-   - JSP ³»ºÎ °´Ã¼
+   - ì„œë¸”ë¦´ ì´ˆê¸°í™” íŒŒë¼ë¯¸í„°: ServletConfig
+   - ë°ì´í„° ê³µìœ  : ServletContext
+   - ì›¹ì–´í”Œë¦¬ì¼€ì´ì…˜ ê°ì‹œ: ServletContextListener
+** Lec 9. JSP ë³¸ê²©ì ìœ¼ë¡œ ì‚´í´ë³´ê¸° I
+   - JSP íƒœê·¸ì˜ ê°œë… ì´í•´
+   - JSP ë™ì‘ ì›ë¦¬
+   - JSP ë‚´ë¶€ ê°ì²´
      
-*** JSP ÅÂ±×ÀÇ °³³ä ÀÌÇØ
-    - ServletÀº Java¾ğ¾î¸¦ ÀÌ¿ëÇÏ¿© ¹®¼­¸¦ ÀÛ¼ºÇÏ°í, Ãâ·Â°´Ã¼¸¦ ÀÌ¿ëÇÏ¿© HTMLÄÚµå¸¦ »ğÀÔ
-    - JSP´Â HTMLÄÚµå¿¡ JAVA¾ğ¾î¸¦ »ğÀÔÇÏ¿© µ¿Àû ¹®¼­¸¦ ÀÛ¼º
-    - HTML³»¿¡ JAVA¸¦ »ğÀÔÇÏ±â À§ÇØ¼­´Â ÅÂ±×¸¦ ÀÌ¿ëÇØ¾ßÇÑ´Ù.
-**** ÅÂ±×ÀÇ Á¾·ù
-     - ¼±¾ğ : string name = "Peter";
-     - Ç¥Çö½Ä(°á°ú°ª) : <%= name>
+*** JSP íƒœê·¸ì˜ ê°œë… ì´í•´
+    - Servletì€ Javaì–¸ì–´ë¥¼ ì´ìš©í•˜ì—¬ ë¬¸ì„œë¥¼ ì‘ì„±í•˜ê³ , ì¶œë ¥ê°ì²´ë¥¼ ì´ìš©í•˜ì—¬ HTMLì½”ë“œë¥¼ ì‚½ì…
+    - JSPëŠ” HTMLì½”ë“œì— JAVAì–¸ì–´ë¥¼ ì‚½ì…í•˜ì—¬ ë™ì  ë¬¸ì„œë¥¼ ì‘ì„±
+    - HTMLë‚´ì— JAVAë¥¼ ì‚½ì…í•˜ê¸° ìœ„í•´ì„œëŠ” íƒœê·¸ë¥¼ ì´ìš©í•´ì•¼í•œë‹¤.
+**** íƒœê·¸ì˜ ì¢…ë¥˜
+     - ì„ ì–¸ : string name = "Peter";
+     - í‘œí˜„ì‹(ê²°ê³¼ê°’) : <%= name>
 
 |------------+----------------------------+-------------------|
-| Áö½ÃÀÚ     | <%@ %>                     | ÆäÀÌÁö ¼Ó¼º       |
-| ÁÖ¼®       | <%-- --%>                  |                   |
-| ¼±¾ğ       | <%! %>                     | º¯¼ö, ¸Ş¼Òµå ¼±¾ğ |
-| Ç¥Çö½Ä     | <%= %>                     | Ãâ·Â              |
-| ½ºÅ©¸³Æ®¸´ | <% %>                      | JAVAÄÚµå          |
-| ¾×¼ÇÅÂ±×   | <jsp:action> </jsp:action> | ÀÚ¹Ùºó ¿¬°á       |
+| ì§€ì‹œì     | <%@ %>                     | í˜ì´ì§€ ì†ì„±       |
+| ì£¼ì„       | <%-- --%>                  |                   |
+| ì„ ì–¸       | <%! %>                     | ë³€ìˆ˜, ë©”ì†Œë“œ ì„ ì–¸ |
+| í‘œí˜„ì‹     | <%= %>                     | ì¶œë ¥              |
+| ìŠ¤í¬ë¦½íŠ¸ë¦¿ | <% %>                      | JAVAì½”ë“œ          |
+| ì•¡ì…˜íƒœê·¸   | <jsp:action> </jsp:action> | ìë°”ë¹ˆ ì—°ê²°       |
 |------------+----------------------------+-------------------|
 
-*** JSP µ¿ÀÛ¿ø¸®
-    - JSP°¡ ¿äÃ»µÇ¾î ÀÀ´äÇÏ±â±îÁöÀÇ °úÁ¤À» ÀÌÇØÇÏ¸é, °³¹ß¿¡ ¸¹Àº µµ¿òÀÌ µÈ´Ù.
-    - Å¬¶óÀÌ¾ğÆ®°¡ À¥ºê¶ó¿ìÀú·Î helloWorld.jsp¸¦ ¿äÃ»ÇÏ¸é JSPÄÁÅ×ÀÌ³Ê°¡ JSPÆÄÀÏÀ» ServletÆÄÀÏ(java)·Î º¯È¯ÇÑ´Ù.
-    - ±×¸®°í ServletÆÄÀÏ(JAVA)Àº ÄÄÆÄÀÏµÈ ÈÄ Å¬·¡½º ÆÄÀÏ(.class)·Î º¯È¯µÇ°í, ¿äÃ»ÇÑ Å¬¶óÀÌ¾ğÆ®¿¡°Ô htmlÇüÅÂ·Î ÀÀ´äÇÑ´Ù.
+*** JSP ë™ì‘ì›ë¦¬
+    - JSPê°€ ìš”ì²­ë˜ì–´ ì‘ë‹µí•˜ê¸°ê¹Œì§€ì˜ ê³¼ì •ì„ ì´í•´í•˜ë©´, ê°œë°œì— ë§ì€ ë„ì›€ì´ ëœë‹¤.
+    - í´ë¼ì´ì–¸íŠ¸ê°€ ì›¹ë¸Œë¼ìš°ì €ë¡œ helloWorld.jspë¥¼ ìš”ì²­í•˜ë©´ JSPì»¨í…Œì´ë„ˆê°€ JSPíŒŒì¼ì„ ServletíŒŒì¼(java)ë¡œ ë³€í™˜í•œë‹¤.
+    - ê·¸ë¦¬ê³  ServletíŒŒì¼(JAVA)ì€ ì»´íŒŒì¼ëœ í›„ í´ë˜ìŠ¤ íŒŒì¼(.class)ë¡œ ë³€í™˜ë˜ê³ , ìš”ì²­í•œ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ htmlí˜•íƒœë¡œ ì‘ë‹µí•œë‹¤.
     - C:\web_dev\apache-tomcat-8.0.53\work\Catalina\localhost\Coffee\org\apache\jsp
       
-**** JSP ³»ºÎ °´Ã¼
-     - °³¹ßÀÚ°¡ °´Ã¼¸¦ »ı¼ºÇÏÁö ¾Ê°í ¹Ù·Î »ç¿ë ÇÒ ¼ö ÀÖ´Â °´Ã¼
-     - JSP¿¡¼­ Á¦°øµÇ´Â ³»ºÎ°´Ã¼´Â JSPÄÁÅ×ÀÌ³Ê¿¡ ÀÇÇØ ServletÀ¸·Î º¯È¯µÉ¶§ ÀÚµ¿À¸·Î °´Ã¼°¡ »ı¼ºµÈ´Ù.
-***** ³»ºÎ °´Ã¼ÀÇ Á¾·ù
-      - ÀÔÃâ·Â °´Ã¼ : request, response, out
-      - ¼­ºí¸´ °´Ã¼ : page, config
-      - ¼¼¼Ç °´Ã¼ : session
-      - ¿¹¿Ü°´Ã¼ : exception
+**** JSP ë‚´ë¶€ ê°ì²´
+     - ê°œë°œìê°€ ê°ì²´ë¥¼ ìƒì„±í•˜ì§€ ì•Šê³  ë°”ë¡œ ì‚¬ìš© í•  ìˆ˜ ìˆëŠ” ê°ì²´
+     - JSPì—ì„œ ì œê³µë˜ëŠ” ë‚´ë¶€ê°ì²´ëŠ” JSPì»¨í…Œì´ë„ˆì— ì˜í•´ Servletìœ¼ë¡œ ë³€í™˜ë ë•Œ ìë™ìœ¼ë¡œ ê°ì²´ê°€ ìƒì„±ëœë‹¤.
+***** ë‚´ë¶€ ê°ì²´ì˜ ì¢…ë¥˜
+      - ì…ì¶œë ¥ ê°ì²´ : request, response, out
+      - ì„œë¸”ë¦¿ ê°ì²´ : page, config
+      - ì„¸ì…˜ ê°ì²´ : session
+      - ì˜ˆì™¸ê°ì²´ : exception
 
 ** Lec 10. JSP II
-   - ½ºÅ©¸³Æ®¸´, ¼±¾ğ, Ç¥Çö½Ä
-   - Áö½ÃÀÚ
-   - ÁÖ¼®
-*** ½ºÅ©¸³Æ®¸´, ¼±¾ğ, Ç¥Çö½Ä -> JSP ½ºÅ©¸³
-    - JSP¹®¼­¾È¿¡ JAVA¾ğ¾î¸¦ ³Ö±â À§ÇÑ ¹æ½Ä, ½ÇÁ¦ °³¹ß¿¡ ¸¹ÀÌ ¾²ÀÌ¹Ç·Î Àß ÀÍÇôµÎÀÚ. 
+   - ìŠ¤í¬ë¦½íŠ¸ë¦¿, ì„ ì–¸, í‘œí˜„ì‹
+   - ì§€ì‹œì
+   - ì£¼ì„
+*** ìŠ¤í¬ë¦½íŠ¸ë¦¿, ì„ ì–¸, í‘œí˜„ì‹ -> JSP ìŠ¤í¬ë¦½
+    - JSPë¬¸ì„œì•ˆì— JAVAì–¸ì–´ë¥¼ ë„£ê¸° ìœ„í•œ ë°©ì‹, ì‹¤ì œ ê°œë°œì— ë§ì´ ì“°ì´ë¯€ë¡œ ì˜ ìµí˜€ë‘ì. 
       
-**** ½ºÅ©¸³Æ®¸´
+**** ìŠ¤í¬ë¦½íŠ¸ë¦¿
 #+BEGIN_SRC jsp
 <%
 	int i=0;
@@ -299,9 +298,9 @@ if(i>9) break;
 %>
 #+END_SRC
 
-**** ¼±¾ğ <%! JAVA ¼±¾ğ¹® %>
-     - JSPÆäÀÌÁö ³»¿¡¼­ »ç¿ëµÇ´Â º¯¼ö ¶Ç´Â ¸Ş¼Òµå¸¦ ¼±¾ğ ÇÒ ¶§ »ç¿ë
-     - ¿©±â¼­ ¼±¾ğµÈ º¯¼ö ¹× ¸Ş¼Òµå´Â Àü¿ªÀÇ ÀÇ¹Ì·Î »ç¿ëµÈ´Ù.
+**** ì„ ì–¸ <%! JAVA ì„ ì–¸ë¬¸ %>
+     - JSPí˜ì´ì§€ ë‚´ì—ì„œ ì‚¬ìš©ë˜ëŠ” ë³€ìˆ˜ ë˜ëŠ” ë©”ì†Œë“œë¥¼ ì„ ì–¸ í•  ë•Œ ì‚¬ìš©
+     - ì—¬ê¸°ì„œ ì„ ì–¸ëœ ë³€ìˆ˜ ë° ë©”ì†Œë“œëŠ” ì „ì—­ì˜ ì˜ë¯¸ë¡œ ì‚¬ìš©ëœë‹¤.
 #+BEGIN_SRC jsp
 <%!
 int limit = 10;
@@ -335,9 +334,9 @@ out.println("limit = " + limit + "<br/>");
 out.println("myDouble(3) = " + myDouble(3) + "<br/>");
 
 %>
-**** Ç¥Çö½Ä <%= JAVA ÄÚµå %>
-     - JSPÆäÀÌÁö ³»¿¡¼­ »ç¿ëµÇ´Â º¯¼öÀÇ °ª ¶Ç´Â ¸Ş¼Òµå È£Ãâ °á°ú°ªÀ» Ãâ·ÂÇÏ±â À§ÇØ »ç¿ë
-     - °á°ú °ªÀº String Å¸ÀÔÀÌ¸ç, '*;*'¸¦ »ç¿ë ÇÒ ¼ö ¾ø´Ù.
+**** í‘œí˜„ì‹ <%= JAVA ì½”ë“œ %>
+     - JSPí˜ì´ì§€ ë‚´ì—ì„œ ì‚¬ìš©ë˜ëŠ” ë³€ìˆ˜ì˜ ê°’ ë˜ëŠ” ë©”ì†Œë“œ í˜¸ì¶œ ê²°ê³¼ê°’ì„ ì¶œë ¥í•˜ê¸° ìœ„í•´ ì‚¬ìš©
+     - ê²°ê³¼ ê°’ì€ String íƒ€ì…ì´ë©°, '*;*'ë¥¼ ì‚¬ìš© í•  ìˆ˜ ì—†ë‹¤.
 
 #+BEGIN_SRC jsp
 
@@ -346,18 +345,18 @@ out.println("myDouble(3) = " + myDouble(3) + "<br/>");
 
 #+END_SRC
 
-**** Áö½ÃÀÚ <%@ ~~~ %>
-     - JSPÆäÀÌÁöÀÇ ÀüÃ¼ÀûÀÎ ¼Ó¼ºÀ» ÁöÁ¤ ÇÒ ¶§ »ç¿ë
-     - page, include, taglib°¡ ÀÖÀ¸¸ç, <%@ ¼Ó¼º %> ÇüÅÂ·Î »ç¿ë
+**** ì§€ì‹œì <%@ ~~~ %>
+     - JSPí˜ì´ì§€ì˜ ì „ì²´ì ì¸ ì†ì„±ì„ ì§€ì • í•  ë•Œ ì‚¬ìš©
+     - page, include, taglibê°€ ìˆìœ¼ë©°, <%@ ì†ì„± %> í˜•íƒœë¡œ ì‚¬ìš©
 
 |---------+------------------------------------|
-| page    | ÇØ´ç ÆäÀÌÁöÀÇ ÀüÃ¼ÀûÀÎ ¼Ó¼º ÁöÁ¤   |
+| page    | í•´ë‹¹ í˜ì´ì§€ì˜ ì „ì²´ì ì¸ ì†ì„± ì§€ì •   |
 |---------+------------------------------------|
-| include | º°µµÀÇ ÆäÀÌÁö¸¦ ÇöÀç ÆäÀÌÁö¿¡ »ğÀÔ |
+| include | ë³„ë„ì˜ í˜ì´ì§€ë¥¼ í˜„ì¬ í˜ì´ì§€ì— ì‚½ì… |
 |---------+------------------------------------|
-| taglib  | ÅÂ±× ¾Æ¸µºê·¯¸®ÀÇ ÅÂ±× »ç¿ë        |
+| taglib  | íƒœê·¸ ì•„ë§ë¸ŒëŸ¬ë¦¬ì˜ íƒœê·¸ ì‚¬ìš©        |
 |---------+------------------------------------|
-***** page Áö½ÃÀÚ
+***** page ì§€ì‹œì
 #+BEGIN_SRC html
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Arrays" %>
@@ -379,98 +378,98 @@ out.println(Arrays.toString(iArr)+ "<br/>");
 %>
 
 #+END_SRC
-***** include Áö½ÃÀÚ
+***** include ì§€ì‹œì
 #+BEGIN_SRC html
-<h1> include.jsp ÆäÀÌÁö ÀÔ´Ï´Ù. </h1> <br/>
+<h1> include.jsp í˜ì´ì§€ ì…ë‹ˆë‹¤. </h1> <br/>
 <%@ include file="include01.jsp">
-<h1> ´Ù½Ã include.jsp ÆäÀÌÁö ÀÔ´Ï´Ù. </h1> <br/>
+<h1> ë‹¤ì‹œ include.jsp í˜ì´ì§€ ì…ë‹ˆë‹¤. </h1> <br/>
 #+END_SRC
-***** taglib Áö½ÃÀÚ
-      - »ç¿ëÀÚ°¡ ¸¸µç tagµéÀ» ÅÂ±×¶óÀÌºê·¯¸®¶ó ÇÑ´Ù. ±×¸®°í ÀÌ·¯ÇÑ ÅÂ±×¶óÀÌºê·¯¸®¸¦ »ç¿ëÇÏ±â À§ÇØ taglibÁö½ÃÀÚ¸¦ »ç¿ëÇÑ´Ù.
-      - uri ¹× prifix¼Ó¼ºÀÌ ÀÖÀ¸¸ç, uri´Â ÅÂ±×¶óÀÌºê·¯¸®ÀÇ À§Ä¡ °ªÀ» °¡Áö¸ç,  prifix´Â ÅÂ±×¸¦ °¡¸®Å°´Â ÀÌ¸§ °ªÀ» °¡Áø´Ù.
-      - taglib Áö½ÃÀÚ¿¡ ´ëÇÑ ÇĞ½ÀÀº ÃßÈÄ¿¡ »ìÆìº¼ JSTLÇĞ½À ¶§ ´Ù½Ã »ìÆìº¸±â·Î ÇÑ´Ù.
+***** taglib ì§€ì‹œì
+      - ì‚¬ìš©ìê°€ ë§Œë“  tagë“¤ì„ íƒœê·¸ë¼ì´ë¸ŒëŸ¬ë¦¬ë¼ í•œë‹¤. ê·¸ë¦¬ê³  ì´ëŸ¬í•œ íƒœê·¸ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ taglibì§€ì‹œìë¥¼ ì‚¬ìš©í•œë‹¤.
+      - uri ë° prifixì†ì„±ì´ ìˆìœ¼ë©°, uriëŠ” íƒœê·¸ë¼ì´ë¸ŒëŸ¬ë¦¬ì˜ ìœ„ì¹˜ ê°’ì„ ê°€ì§€ë©°,  prifixëŠ” íƒœê·¸ë¥¼ ê°€ë¦¬í‚¤ëŠ” ì´ë¦„ ê°’ì„ ê°€ì§„ë‹¤.
+      - taglib ì§€ì‹œìì— ëŒ€í•œ í•™ìŠµì€ ì¶”í›„ì— ì‚´í´ë³¼ JSTLí•™ìŠµ ë•Œ ë‹¤ì‹œ ì‚´í´ë³´ê¸°ë¡œ í•œë‹¤.
 
 	
-**** ÁÖ¼®
-     - html <!-- ÁÖ¼®³»¿ë -->
-     - jsp <%-- ÁÖ¼®³»¿ë --%>
+**** ì£¼ì„
+     - html <!-- ì£¼ì„ë‚´ìš© -->
+     - jsp <%-- ì£¼ì„ë‚´ìš© --%>
 
 ** Lec 11. JSP III
-   - request °´Ã¼ÀÇ ÀÌÇØ
-   - response °´Ã¼ÀÇ ÀÌÇØ
+   - request ê°ì²´ì˜ ì´í•´
+   - response ê°ì²´ì˜ ì´í•´
      
 *** request
-    - À¥ºê¶ó¿ìÀú¸¦ ÅëÇØ ¼­¹ö¿¡ ¾î¶² Á¤º¸¸¦ ¿äÃ»ÇÏ´Â °ÍÀ» request¶ó ÇÑ´Ù.
-    - ±×¸®°í ÀÌ·¯ÇÑ ¿äÃ» Á¤º¸´Â request°´Ã¼°¡ °ü¸®ÇÑ´Ù.
-    - À¥ºê¶ó¿ìÀú      (request) ---> Server
+    - ì›¹ë¸Œë¼ìš°ì €ë¥¼ í†µí•´ ì„œë²„ì— ì–´ë–¤ ì •ë³´ë¥¼ ìš”ì²­í•˜ëŠ” ê²ƒì„ requestë¼ í•œë‹¤.
+    - ê·¸ë¦¬ê³  ì´ëŸ¬í•œ ìš”ì²­ ì •ë³´ëŠ” requestê°ì²´ê°€ ê´€ë¦¬í•œë‹¤.
+    - ì›¹ë¸Œë¼ìš°ì €      (request) ---> Server
     -          <--- (Response)
       
-***** Request°´Ã¼ °ü·Ã ¸Ş¼Òµå
+***** Requestê°ì²´ ê´€ë ¨ ë©”ì†Œë“œ
  |------------------+------------------------------------------|
- | getContextpath   | À¥¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ ÄÁÅØ½ºÆ® ÆĞ½º¸¦ ¾ò´Â´Ù. |
- | getMethod()      | get/post¹æ½ÄÀ» ±¸ºĞ ÇÒ ¼ö ÀÖ´Ù.          |
- | getSession()     | ¼¼¼Ç°´Ã¼¸¦ ¾ò´Â´Ù.                       |
- | getProtocol()    | ÇØ´ç ÇÁ·ÎÅäÄİ¤·¤© ¾ò´Â´Ù.                |
- | getRequestURL()  | ¿äÃ» URLÀ» ¾ò´Â´Ù.                       |
- | getRequestURI()  | URI¸¦ ¾ò´Â´Ù.                            |
- | getQueryString() | Äõ¸®½ºµå¸µÀ» ¾ò´Â´Ù.                     |
+ | getContextpath   | ì›¹ì–´í”Œë¦¬ì¼€ì´ì…˜ì˜ ì»¨í…ìŠ¤íŠ¸ íŒ¨ìŠ¤ë¥¼ ì–»ëŠ”ë‹¤. |
+ | getMethod()      | get/postë°©ì‹ì„ êµ¬ë¶„ í•  ìˆ˜ ìˆë‹¤.          |
+ | getSession()     | ì„¸ì…˜ê°ì²´ë¥¼ ì–»ëŠ”ë‹¤.                       |
+ | getProtocol()    | í•´ë‹¹ í”„ë¡œí† ì½œã…‡ã„¹ ì–»ëŠ”ë‹¤.                |
+ | getRequestURL()  | ìš”ì²­ URLì„ ì–»ëŠ”ë‹¤.                       |
+ | getRequestURI()  | URIë¥¼ ì–»ëŠ”ë‹¤.                            |
+ | getQueryString() | ì¿¼ë¦¬ìŠ¤ë“œë§ì„ ì–»ëŠ”ë‹¤.                     |
  |------------------+------------------------------------------|
 
  #+BEGIN_SRC java
- out.println("¼­    ¹ö:"+ request.getServerName()  + "<br/>");
- out.println("Æ÷Æ®¹øÈ£:" + request.getServerPort()  + "<br/>");
- out.println("¿äÃ»¹æ½Ä:" + request.getMethod()      + "<br/>");
- out.println("ÇÁ·ÎÅäÄİ:" + request.getProtocol()   + "<br/>");
+ out.println("ì„œ    ë²„:"+ request.getServerName()  + "<br/>");
+ out.println("í¬íŠ¸ë²ˆí˜¸:" + request.getServerPort()  + "<br/>");
+ out.println("ìš”ì²­ë°©ì‹:" + request.getMethod()      + "<br/>");
+ out.println("í”„ë¡œí† ì½œ:" + request.getProtocol()   + "<br/>");
  out.println("URL:"     + request.getRequestURL() + "<br/>");
  out.println("URI:"     + request.getRequestURI() + "<br/>");
  #+END_SRC
  
-**** Parameter ¸Ş¼Òµå
-     - ¾Õ¿¡¼­ »ìÆìº» ¿äÃ»°ü·Ã ¸Ş¼Òµå º¸´Ù ½ÇÁ¦ ¸¹ÀÌ ¾²ÀÌ´Â ¸Ş¼Òµå´Â parameter¿Í °ü·ÃµÈ ¸Ş¼ÒµåÀÌ´Ù.
-     - JSPÆäÀÌÁö¸¦ Á¦ÀÛÇÏ´Â ¸ñÀûÀÌ µ¥ÀÌÅÍ °ªÀ» Àü¼ÛÇÏ±â À§ÇÔÀÌ¹Ç·Î, parameter°ü·Ã ¸Ş¼Òµå´Â Áß¿äÇÏ´Ù.
+**** Parameter ë©”ì†Œë“œ
+     - ì•ì—ì„œ ì‚´í´ë³¸ ìš”ì²­ê´€ë ¨ ë©”ì†Œë“œ ë³´ë‹¤ ì‹¤ì œ ë§ì´ ì“°ì´ëŠ” ë©”ì†Œë“œëŠ” parameterì™€ ê´€ë ¨ëœ ë©”ì†Œë“œì´ë‹¤.
+     - JSPí˜ì´ì§€ë¥¼ ì œì‘í•˜ëŠ” ëª©ì ì´ ë°ì´í„° ê°’ì„ ì „ì†¡í•˜ê¸° ìœ„í•¨ì´ë¯€ë¡œ, parameterê´€ë ¨ ë©”ì†Œë“œëŠ” ì¤‘ìš”í•˜ë‹¤.
 
 |---------------------------------+------------------------------------|
-| getParameter(String name)       | name¿¡ ÇØ´çµÇ´Â ÆÄ¶ó¹ÌÅÍ °ªÀ» ±¸ÇÔ |
-| getParameterNames()             | ¸ğµç ÆÄ¶ó¹ÌÅÍ ÀÌ¸§À» ±¸ÇÔ          |
-| getParameterValues(String name) | name¿¡ ÇØ´çÇÏ´Â ÆÄ¶ó¹ÌÅÍ °ªÀ» ±¸ÇÔ |
+| getParameter(String name)       | nameì— í•´ë‹¹ë˜ëŠ” íŒŒë¼ë¯¸í„° ê°’ì„ êµ¬í•¨ |
+| getParameterNames()             | ëª¨ë“  íŒŒë¼ë¯¸í„° ì´ë¦„ì„ êµ¬í•¨          |
+| getParameterValues(String name) | nameì— í•´ë‹¹í•˜ëŠ” íŒŒë¼ë¯¸í„° ê°’ì„ êµ¬í•¨ |
 |---------------------------------+------------------------------------|
 
-*** response °´Ã¼ÀÇ ÀÌÇØ
-    - À¥ºê¶ó¿ìÀúÀÇ ¿äÃ»¿¡ ÀÀ´äÇÏ´Â °ÍÀ» response¶óÇÏ¸ç,
-    - ÀÌ·¯ÇÑ ÀÀ´ä(response)ÀÇ Á¤º¸¸¦ °¡Áö°í ÀÖ´Â °´Ã¼¸¦ response°´Ã¼¶óÇÑ´Ù.
-    - À¥ºê¶ó¿ìÀú      (request) ---> Server
+*** response ê°ì²´ì˜ ì´í•´
+    - ì›¹ë¸Œë¼ìš°ì €ì˜ ìš”ì²­ì— ì‘ë‹µí•˜ëŠ” ê²ƒì„ responseë¼í•˜ë©°,
+    - ì´ëŸ¬í•œ ì‘ë‹µ(response)ì˜ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” ê°ì²´ë¥¼ responseê°ì²´ë¼í•œë‹¤.
+    - ì›¹ë¸Œë¼ìš°ì €      (request) ---> Server
     -          <--- (Response)
       
 |------------------------+---------------------------------------|
-| getCharacterEncoding() | ÀÀ´äÇÒ¶§ ¹®ÀÚÀÇ ÀÎÄÚµù ÇüÅÂ¸¦ ±¸ÇÑ´Ù. |
-| addCookie(Cookie)      | ÄíÅ°¸¦ ÁöÁ¤ÇÑ´Ù.                      |
-| sendRedirect(URL)      | ÁöÁ¤ÇÑ URL·Î ÀÌµ¿ÇÑ´Ù.                |
+| getCharacterEncoding() | ì‘ë‹µí• ë•Œ ë¬¸ìì˜ ì¸ì½”ë”© í˜•íƒœë¥¼ êµ¬í•œë‹¤. |
+| addCookie(Cookie)      | ì¿ í‚¤ë¥¼ ì§€ì •í•œë‹¤.                      |
+| sendRedirect(URL)      | ì§€ì •í•œ URLë¡œ ì´ë™í•œë‹¤.                |
 |------------------------+---------------------------------------|
 
-** Lec 12 ¾×¼ÇÅÂ±×
-   - ¾×¼ÇÅÂ±×¶õ?
-   - forward, include, param ÅÂ±× »ìÆìº¸±â
-   - jsp·Î½ÃÀÛ - <jsp:include>, <jsp:forward>, <jsp:param>
-*** ¾×¼ÇÅÂ±×?
-    - JSPÆäÀÌÁö ³»¿¡¼­ ¾î¶² µ¿ÀÛÀ» ÇÏµµ·Ï Áö½ÃÇÏ´Â ÅÂ±×ÀÔ´Ï´Ù. ¿¹¸¦ µé¾î ÆäÀÌÁö ÀÌµ¿, ÆäÀÌÁö include µî.
-    - ÃßÈÄ¿¡ ¹è¿ï Bean°ú °ü·ÃµÈ ÅÂ±×µµ ÀÖ´Ù.
-    - ¿ì¼± forward, include, paramÅÂ±×¸¸ »ìÆìº¸°í, ÃßÈÄ beanÀ» ÇĞ½Àµµ·Ï ÇÑ´Ù.
-*** forward, include, paramÅÂ±× »ìÆìº¸±â
+** Lec 12 ì•¡ì…˜íƒœê·¸
+   - ì•¡ì…˜íƒœê·¸ë€?
+   - forward, include, param íƒœê·¸ ì‚´í´ë³´ê¸°
+   - jspë¡œì‹œì‘ - <jsp:include>, <jsp:forward>, <jsp:param>
+*** ì•¡ì…˜íƒœê·¸?
+    - JSPí˜ì´ì§€ ë‚´ì—ì„œ ì–´ë–¤ ë™ì‘ì„ í•˜ë„ë¡ ì§€ì‹œí•˜ëŠ” íƒœê·¸ì…ë‹ˆë‹¤. ì˜ˆë¥¼ ë“¤ì–´ í˜ì´ì§€ ì´ë™, í˜ì´ì§€ include ë“±.
+    - ì¶”í›„ì— ë°°ìš¸ Beanê³¼ ê´€ë ¨ëœ íƒœê·¸ë„ ìˆë‹¤.
+    - ìš°ì„  forward, include, paramíƒœê·¸ë§Œ ì‚´í´ë³´ê³ , ì¶”í›„ beanì„ í•™ìŠµë„ë¡ í•œë‹¤.
+*** forward, include, paramíƒœê·¸ ì‚´í´ë³´ê¸°
 *** forward
-    - ÇöÀçÀÇ ÆäÀÌÁö¿¡¼­ ´Ù¸¥ Æ¯Á¤ÆäÀÌÁö·Î ÀüÈ¯ÇÒ ¶§ »ç¿ë,
+    - í˜„ì¬ì˜ í˜ì´ì§€ì—ì„œ ë‹¤ë¥¸ íŠ¹ì •í˜ì´ì§€ë¡œ ì „í™˜í•  ë•Œ ì‚¬ìš©,
     - 
 #+BEGIN_SRC html
 <!-- main.jsp -->
-<h1> main.jspÆäÀÌÁö ÀÔ´Ï´Ù. </h1>
+<h1> main.jspí˜ì´ì§€ ì…ë‹ˆë‹¤. </h1>
 <jsp:forward page = "sub.jsp"/>
 
 <!-- sub.jsp -->
-<h5> sub.jspÆäÀÌÁö ÀÔ´Ï´Ù. </h5>
+<h5> sub.jspí˜ì´ì§€ ì…ë‹ˆë‹¤. </h5>
 
 #+END_SRC
 
-**** param ÅÂ±×
-     - forward ¹× includeÅÂ±×¿¡ *µ¥ÀÌÅÍ Àü´ŞÀ» ¸ñÀûÀ¸·Î* »ç¿ëµÇ´Â ÅÂ±×ÀÔ´Ï´Ù. *ÀÌ¸§°ú °ªÀ¸·Î* ÀÌ·ç¾îÁ® ÀÖ½À´Ï´Ù.
+**** param íƒœê·¸
+     - forward ë° includeíƒœê·¸ì— *ë°ì´í„° ì „ë‹¬ì„ ëª©ì ìœ¼ë¡œ* ì‚¬ìš©ë˜ëŠ” íƒœê·¸ì…ë‹ˆë‹¤. *ì´ë¦„ê³¼ ê°’ìœ¼ë¡œ* ì´ë£¨ì–´ì ¸ ìˆìŠµë‹ˆë‹¤.
 #+BEGIN_SRC html
 <jsp:forward page="forward_param.jsp">
 <jsp:param name="id" value="Peter">
@@ -478,17 +477,17 @@ out.println(Arrays.toString(iArr)+ "<br/>");
 </jsp:forward>
 #+END_SRC
 
-** Lec 13 ÄíÅ°¶õ?
-   - À¥ºê¶ó¿ìÀú¿¡¼­ ¼­¹ö·Î ¾î¶² µ¥ÀÌÅÍ¸¦ ¿äÃ»ÇÏ¸é, ¼­¹öÃø¿¡¼­´Â ¾Ë¸ÂÀº ·ÎÁ÷À» ¼öÇàÇÑ ÈÄ µ¥ÀÌÅÍ¸¦ À¥ºê¶ó¿ìÀú¿¡ ÀÀ´ä ÇÕ´Ï´Ù.
-   - ±×¸®°í, ¼­¹ö´Â À¥ºê¶ó¿ìÀú¿ÍÀ¸ÀÌ °ü°è¸¦ Á¾·áÇÕ´Ï´Ù. ÀÌ·¸°Ô À¥ºê¶ó¿ìÀú¿¡ ÀÀ´ä ÈÄ °ü°è¸¦ ²÷´Â °ÍÀº httpÇÁ·ÎÅäÄİÀÇ Æ¯Â¡ÀÌ´Ù.
-   - *¿¬°áÀÌ ²÷°åÀ» ¶§ ¾î¶² Á¤º¸¸¦ Áö¼ÓÀûÀ¸·Î À¯ÁöÇÏ±â À§ÇÑ ¼ö´ÜÀ¸·Î ÄíÅ°¶ó´Â ¹æ½ÄÀ» »ç¿ë*
-   - ÄíÅ°´Â ¼­¹ö¿¡¼­ »ı¼ºÇÏ¿©, ¼­¹ö°¡ ¾Æ´Ñ Å¬¶óÀÌ¾ğÆ®Ãø¿¡ Æ¯Á¤ Á¤º¸¸¦ ÀúÀåÇÕ´Ï´Ù. ±×¸®°í ¼­¹ö¿¡ ¿äÃ»ÇÒ ¶§ ¸¶´Ù ÄíÅ°ÀÇ ¼Ó¼º°ªÀ» ÂüÁ¶ ¶Ç´Â º¯°æÇÒ ¼ö ÀÖ½À´Ï´Ù.
-   - Äí±â´Â 4Kb·Î ¿ë·®ÀÌ Á¦ÇÑÀûÀÌ¸ç, 300°³±îÁö µ¥ÀÌÅÍ Á¤º¸¸¦ °¡Áú ¼ö ÀÖ½À´Ï´Ù.
-*** ÄíÅ°»ç¿ë¹ı
-    - ÄíÅ°´Â ¼­¹ö¿¡¼­ »ı¼ºµÇ°í, ¤»¤©¶óÀÌ¾ğÆ®Ãø¿¡ Àü¼ÛµÇ¾î ÀúÀå±­°¡°í ÇÏ¿´´Ù.
-    - ÄíÅ°»ı¼º¹æ¹ı ¹× °ü·Ã ¸Ş¼ÒµåµéÀ» »ìÆìº¸ÀÚ
-    - ÄíÅ°»ı¼º <---------> ¼Ó¼º¼³Á¤ <---------> response°´Ã¼¿¡ ÄíÅ°Å¾Àç
-    - ÄíÅ°Å¬·¡½º»ç¿ë,      setterÀÌ¿ë           response.addCookie()¸¦ ÀÌ¿ë
+** Lec 13 ì¿ í‚¤ë€?
+   - ì›¹ë¸Œë¼ìš°ì €ì—ì„œ ì„œë²„ë¡œ ì–´ë–¤ ë°ì´í„°ë¥¼ ìš”ì²­í•˜ë©´, ì„œë²„ì¸¡ì—ì„œëŠ” ì•Œë§ì€ ë¡œì§ì„ ìˆ˜í–‰í•œ í›„ ë°ì´í„°ë¥¼ ì›¹ë¸Œë¼ìš°ì €ì— ì‘ë‹µ í•©ë‹ˆë‹¤.
+   - ê·¸ë¦¬ê³ , ì„œë²„ëŠ” ì›¹ë¸Œë¼ìš°ì €ì™€ìœ¼ì´ ê´€ê³„ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤. ì´ë ‡ê²Œ ì›¹ë¸Œë¼ìš°ì €ì— ì‘ë‹µ í›„ ê´€ê³„ë¥¼ ëŠëŠ” ê²ƒì€ httpí”„ë¡œí† ì½œì˜ íŠ¹ì§•ì´ë‹¤.
+   - *ì—°ê²°ì´ ëŠê²¼ì„ ë•Œ ì–´ë–¤ ì •ë³´ë¥¼ ì§€ì†ì ìœ¼ë¡œ ìœ ì§€í•˜ê¸° ìœ„í•œ ìˆ˜ë‹¨ìœ¼ë¡œ ì¿ í‚¤ë¼ëŠ” ë°©ì‹ì„ ì‚¬ìš©*
+   - ì¿ í‚¤ëŠ” ì„œë²„ì—ì„œ ìƒì„±í•˜ì—¬, ì„œë²„ê°€ ì•„ë‹Œ í´ë¼ì´ì–¸íŠ¸ì¸¡ì— íŠ¹ì • ì •ë³´ë¥¼ ì €ì¥í•©ë‹ˆë‹¤. ê·¸ë¦¬ê³  ì„œë²„ì— ìš”ì²­í•  ë•Œ ë§ˆë‹¤ ì¿ í‚¤ì˜ ì†ì„±ê°’ì„ ì°¸ì¡° ë˜ëŠ” ë³€ê²½í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+   - ì¿ ê¸°ëŠ” 4Kbë¡œ ìš©ëŸ‰ì´ ì œí•œì ì´ë©°, 300ê°œê¹Œì§€ ë°ì´í„° ì •ë³´ë¥¼ ê°€ì§ˆ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+*** ì¿ í‚¤ì‚¬ìš©ë²•
+    - ì¿ í‚¤ëŠ” ì„œë²„ì—ì„œ ìƒì„±ë˜ê³ , ã…‹ã„¹ë¼ì´ì–¸íŠ¸ì¸¡ì— ì „ì†¡ë˜ì–´ ì €ì¥ê´¸ê°€ê³  í•˜ì˜€ë‹¤.
+    - ì¿ í‚¤ìƒì„±ë°©ë²• ë° ê´€ë ¨ ë©”ì†Œë“œë“¤ì„ ì‚´í´ë³´ì
+    - ì¿ í‚¤ìƒì„± <---------> ì†ì„±ì„¤ì • <---------> responseê°ì²´ì— ì¿ í‚¤íƒ‘ì¬
+    - ì¿ í‚¤í´ë˜ìŠ¤ì‚¬ìš©,      setterì´ìš©           response.addCookie()ë¥¼ ì´ìš©
 
 ** Lec 17. Database
 *** basic(sqlplus)
@@ -498,13 +497,13 @@ out.println(Arrays.toString(iArr)+ "<br/>");
 **** add user as scott with pwd tiger
      - SQL>create user scott identified by tiger;
 
-**** ±ÇÇÑÁÖ±â
+**** ê¶Œí•œì£¼ê¸°
      - SQL>grant connect, resource to scott;
 
-**** ºüÁ®³ª¿À°í
+**** ë¹ ì ¸ë‚˜ì˜¤ê³ 
      - SQL>exit
 
-**** scottÀ¸·Î ·Î±×ÀÎ
+**** scottìœ¼ë¡œ ë¡œê·¸ì¸
      - C:\>sqlplus scott/tiger
        
 **** Basic Settings
@@ -515,71 +514,71 @@ out.println(Arrays.toString(iArr)+ "<br/>");
      - SQL>SET PAGESIZE 30 --> ??
      - SQL>SHOW ALL --> show all setting values(linesize, pagesize)
 
-**** Å×ÀÌºí ¸¸µé±â
+**** í…Œì´ë¸” ë§Œë“¤ê¸°
      - SQL>CREATE CREATE TABLE member(
        2  id    VARCHAR2(20) PRIMARY KEY,
        3  pw    VARCHAR2(20),
        4  name  VARCHAR2(20),
        5  phone VARCHAR2(20));
 
-**** Å×ÀÌºí È®ÀÎ
+**** í…Œì´ë¸” í™•ì¸
      - SQL>SELECT * FROM TAB;
 
-**** ·¹ÄÚµå »ğÀÔ
-     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('abc', '123', 'È«±æµ¿', '010-2311-3602');
-     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('def', '456', '±è´ëÁø', '010-2311-3602');
-     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('ghi', '345', '±è¾îÁø', '010-2311-3602');
+**** ë ˆì½”ë“œ ì‚½ì…
+     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('abc', '123', 'í™ê¸¸ë™', '010-2311-3602');
+     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('def', '456', 'ê¹€ëŒ€ì§„', '010-2311-3602');
+     - SQL>INSERT INTO member (id, pw, name, phone) VALUES ('ghi', '345', 'ê¹€ì–´ì§„', '010-2311-3602');
 
-**** ·¹ÄÚµå »èÁ¦
-     - SQL>DELETE FROM member WHERE name='È«±æµ¿';
+**** ë ˆì½”ë“œ ì‚­ì œ
+     - SQL>DELETE FROM member WHERE name='í™ê¸¸ë™';
 
-**** º¯°æ»çÇ× ÀúÀå
+**** ë³€ê²½ì‚¬í•­ ì €ì¥
      - SQL>commit;
 
-**** Å×ÀÌºí ³»¿ë È®ÀÎ
+**** í…Œì´ë¸” ë‚´ìš© í™•ì¸
      - SQL>SELECT * FROM member;
 
-**** ·¹ÄÚµå »èÁ¦
-     - SQL>DELETE FROM member WHERE name='È«±æµ¿';
+**** ë ˆì½”ë“œ ì‚­ì œ
+     - SQL>DELETE FROM member WHERE name='í™ê¸¸ë™';
 
-**** µ¥ÀÌÅÍ ¼öÁ¤
-     - SQL>UPDATE Å×ÀÌºíÀÌ¸§ SET ÄÃ·³ÀÌ¸§=°ª, ÄÃ·³ÀÌ¸§=°ª, Á¶°Ç; 
+**** ë°ì´í„° ìˆ˜ì •
+     - SQL>UPDATE í…Œì´ë¸”ì´ë¦„ SET ì»¬ëŸ¼ì´ë¦„=ê°’, ì»¬ëŸ¼ì´ë¦„=ê°’, ì¡°ê±´; 
      - SQL>UPDATE member SET pw='000' WHERE id='ghi';
 
-**** È®ÀÎ
+**** í™•ì¸
      - SQL>SELECT * FROM member WHERE id='ghi';
 
-**** Å×ÀÌºí »èÁ¦
-     - SQL>DROP TABLE Å×ÀÌºíÀÌ¸§;
+**** í…Œì´ë¸” ì‚­ì œ
+     - SQL>DROP TABLE í…Œì´ë¸”ì´ë¦„;
      - SQL>DROP TABLE member;
 
-**** È®ÀÎ
+**** í™•ì¸
      - SQL>SELECT * FROM tab;
        
-**** ÂüÁ¶µÈ Å×ÀÌºí »èÁ¦
+**** ì°¸ì¡°ëœ í…Œì´ë¸” ì‚­ì œ
      - SQL>ALTER TABLE tbl_salelist_01 DROP CONSTRAINT fk_scode;
 
      - SQL>DROP TABLE tbl_shop_01;
 
-     - ÀÚ·áÇü :
-       - number : ¼öÄ¡µ¥ÀÌÅÍ
-       - char : °íÁ¤ ¹®ÀÚ¿­
-       - varchar2 : °¡º¯±æÀÌ ¹®ÀÚ¿­
+     - ìë£Œí˜• :
+       - number : ìˆ˜ì¹˜ë°ì´í„°
+       - char : ê³ ì • ë¬¸ìì—´
+       - varchar2 : ê°€ë³€ê¸¸ì´ ë¬¸ìì—´
        
 *** advanced
 **** View
-     - ¿À¶óÅ¬¿¡¼­ ¾ÆÁÖ ¸¹ÀÌ »ç¿ëµÇ´Â µ¥ÀÌÅÍ°ü¸®¿ë object
-     - °¡»óÅ×ÀÌºí, ¿ø·¡ Å×ÀÌºíÀº µ¥ÀÌÅÍ°¡ µé¾î ÀÖÁö¸¸,
-     - View¿¡´Â µ¥ÀÌÅÍ°¡ ¾ø°í ¿øº» Å×ÀÌºí¿¡¼­ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿À´Â SQL Query¸¸ ÀúÀåµÇ ÀÖ´Ù.
-     - ÁÖ·Î º¸¾È°ú »ç¿ëÀÚ ÆíÀÇ¼º ¶§¹®¿¡ »ç¿ë
+     - ì˜¤ë¼í´ì—ì„œ ì•„ì£¼ ë§ì´ ì‚¬ìš©ë˜ëŠ” ë°ì´í„°ê´€ë¦¬ìš© object
+     - ê°€ìƒí…Œì´ë¸”, ì›ë˜ í…Œì´ë¸”ì€ ë°ì´í„°ê°€ ë“¤ì–´ ìˆì§€ë§Œ,
+     - Viewì—ëŠ” ë°ì´í„°ê°€ ì—†ê³  ì›ë³¸ í…Œì´ë¸”ì—ì„œ ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” SQL Queryë§Œ ì €ì¥ë˜ ìˆë‹¤.
+     - ì£¼ë¡œ ë³´ì•ˆê³¼ ì‚¬ìš©ì í¸ì˜ì„± ë•Œë¬¸ì— ì‚¬ìš©
        
 ***** Simple View
-      - »ı¼ºÇÒ ¼­ºê Äõ¸®¿¡ Á¶ÀÎ Á¶°ÇÀÌ µé¾î°¡Áö ¾Ê°í,
-      - 1°³ÀÇ Å×ÀÌºí·Î ¸¸µé¾î Áö´Â °£´ÜÇÑ ºä¸¦ ÀÇ¹Ì
+      - ìƒì„±í•  ì„œë¸Œ ì¿¼ë¦¬ì— ì¡°ì¸ ì¡°ê±´ì´ ë“¤ì–´ê°€ì§€ ì•Šê³ ,
+      - 1ê°œì˜ í…Œì´ë¸”ë¡œ ë§Œë“¤ì–´ ì§€ëŠ” ê°„ë‹¨í•œ ë·°ë¥¼ ì˜ë¯¸
         #+BEGIN_SRC sql 
         CREATE [OR REPLACE] [FORCE | NOFORCE] VIEW view_name [(alias, alias, ...)]
         AS sub-query 
-        [ WITH CHECK OPTION [CONSTRAINT Á¦¾àÁ¶°Ç]]
+        [ WITH CHECK OPTION [CONSTRAINT ì œì•½ì¡°ê±´]]
         [ WITH READ ONLY]
         
         CREATE OR REPLACE VIEW v_emp1
@@ -589,8 +588,8 @@ out.println(Arrays.toString(iArr)+ "<br/>");
         SELECT * FROM v_emp1;
         #+END_SRC
 ***** Complex View
-      - Sub Query ºÎºĞ¿¡ ¿©·¯°³ÀÇ Å×ÀÌºíÀÌ JoinµÇ¾î »ı¼ºµÇ´Â °Í
-      - »ı¼º ¹®¹ıÀº ´Ü¼ø View¿Í µ¿ÀÏ
+      - Sub Query ë¶€ë¶„ì— ì—¬ëŸ¬ê°œì˜ í…Œì´ë¸”ì´ Joinë˜ì–´ ìƒì„±ë˜ëŠ” ê²ƒ
+      - ìƒì„± ë¬¸ë²•ì€ ë‹¨ìˆœ Viewì™€ ë™ì¼
         #+BEGIN_SRC sql 
         CREATE OR REPLACE VIEW v_emp 
         AS
@@ -601,9 +600,9 @@ out.println(Arrays.toString(iArr)+ "<br/>");
         SELECT * FROM v_emp;
         #+END_SRC
 ***** Inline View
-      - view´Â ÇÊ¿äÇÒ ¶§ »ı¼ºÇØ ³õ°í ´Ù¸¥ Äõ¸®¿¡¼­ ¿©·¯ ¹ø ¹İº¹ÇØ Àç»ç¿ë ÇÒ ¼ö ÀÖ´Ù.
-      - ±×·¯³ª ´Ù¸¥ Äõ¸®¿¡¼­ »ç¿ëÇÒ ÇÊ¿ä ¾øÀÌ ÇØ´ç SQL¿¡¼­¸¸ ÇÊ¿äÇÑ ViewÀÏ °æ¿ì
-      - ¹ø°Å·Ó°Ô View¸¦ »ı¼ºÇÏÁö ¾Ê°í SQL ¹®ÀåÀÇ FROMÀı¿¡ VIEWÀÇ ¼­ºêÄõ¸®¸¦ ¹Ù·Î Àû¾î»ç¿ë
+      - viewëŠ” í•„ìš”í•  ë•Œ ìƒì„±í•´ ë†“ê³  ë‹¤ë¥¸ ì¿¼ë¦¬ì—ì„œ ì—¬ëŸ¬ ë²ˆ ë°˜ë³µí•´ ì¬ì‚¬ìš© í•  ìˆ˜ ìˆë‹¤.
+      - ê·¸ëŸ¬ë‚˜ ë‹¤ë¥¸ ì¿¼ë¦¬ì—ì„œ ì‚¬ìš©í•  í•„ìš” ì—†ì´ í•´ë‹¹ SQLì—ì„œë§Œ í•„ìš”í•œ Viewì¼ ê²½ìš°
+      - ë²ˆê±°ë¡­ê²Œ Viewë¥¼ ìƒì„±í•˜ì§€ ì•Šê³  SQL ë¬¸ì¥ì˜ FROMì ˆì— VIEWì˜ ì„œë¸Œì¿¼ë¦¬ë¥¼ ë°”ë¡œ ì ì–´ì‚¬ìš©
         #+BEGIN_SRC sql 
         SELECT e.deptno, d.dname, e.max_sal 
         FROM (SELECT deptno, MAX(sal) max_sal 
@@ -611,7 +610,7 @@ out.println(Arrays.toString(iArr)+ "<br/>");
               GROUP BY Deptno) e, dept d
         WHERE e.deptno = d.deptno;
         #+END_SRC
-***** View Á¶È¸ ¹× »èÁ¦
+***** View ì¡°íšŒ ë° ì‚­ì œ
         #+BEGIN_SRC sql 
         SET LINE 200 
         COL view_name for a15
@@ -621,64 +620,82 @@ out.println(Arrays.toString(iArr)+ "<br/>");
         #+END_SRC
 
 **** Procedure
-     - ÁöÁ¤µÈ Æ¯Á¤ Ã³¸®¸¦ »ıÇàÇÏ´Â ¼­ºê ÇÁ·Î±×·¥ÀÇ ÇÑ À¯ÇüÀ¸·Î ´Üµ¶, ¶Ç´Â ´Ù¸¥ ÇÁ·Î½ÃÀú³ª ´Ù¸¥ Åø(Oracle Developer...)
-     - ¶Ç´Â ´Ù¸¥ È¯°æ¿¡¼­ È£ÃâµÇ¾î ½ÇÇà
+     - ì§€ì •ëœ íŠ¹ì • ì²˜ë¦¬ë¥¼ ìƒí–‰í•˜ëŠ” ì„œë¸Œ í”„ë¡œê·¸ë¨ì˜ í•œ ìœ í˜•ìœ¼ë¡œ ë‹¨ë…, ë˜ëŠ” ë‹¤ë¥¸ í”„ë¡œì‹œì €ë‚˜ ë‹¤ë¥¸ íˆ´(Oracle Developer...)
+     - ë˜ëŠ” ë‹¤ë¥¸ í™˜ê²½ì—ì„œ í˜¸ì¶œë˜ì–´ ì‹¤í–‰
 **** function
-     - Á¤ÇØÁø ÀÛ¾÷À» ¼öÇàÇÑ ÈÄ °ªÀ» ¹İÈ¯ÇÑ´Ù.
+     - ì •í•´ì§„ ì‘ì—…ì„ ìˆ˜í–‰í•œ í›„ ê°’ì„ ë°˜í™˜í•œë‹¤.
 **** Trigger
-     - ¼­ºêÇÁ·Î±×·¥ ´ÜÀ§ÀÇ ÇÏ³ª
-     - Å×ÀÌºí, ºä, ½ºÅ°¸¶ ¶Ç´Â µ¥ÀÌÅÍº£ÀÌ½º¿¡ °ü·ÄµÈ PL/SQL ºí·°(¶Ç´Â ÇÁ·Î½ÃÁ®)À¸·Î Event°¡ ¹ß»ıµÉ ¶§ ¸¶´Ù
-     - ¿¬°üµÈ ´Ù¸¥ ÀÛ¾÷ÀÌ ÀÚµ¿À¸·Î ¼öÇàµÈ´Ù.
+     - ì„œë¸Œí”„ë¡œê·¸ë¨ ë‹¨ìœ„ì˜ í•˜ë‚˜
+     - í…Œì´ë¸”, ë·°, ìŠ¤í‚¤ë§ˆ ë˜ëŠ” ë°ì´í„°ë² ì´ìŠ¤ì— ê´€ë ¬ëœ PL/SQL ë¸”ëŸ­(ë˜ëŠ” í”„ë¡œì‹œì ¸)ìœ¼ë¡œ Eventê°€ ë°œìƒë  ë•Œ ë§ˆë‹¤
+     - ì—°ê´€ëœ ë‹¤ë¥¸ ì‘ì—…ì´ ìë™ìœ¼ë¡œ ìˆ˜í–‰ëœë‹¤.
        
+**** Sequence
+     - Automatically generates *unique* number
+     - Useful in generating *primary key values*.
+     - Ascending or Decending.
+     - Once incremented, the sequence number will be generated,
+       regardless of *commit or rollback* of the transaction.
+     - Sequences are *independent* of tables, so same sequence can be
+       used at multiple places in PL/SQL code, or with multiple tables and among
+       multiple users.
+       
+#+BEGIN_SRC sql
+CREATE SEQUENCE seq_sale_no
+START WITH 100001
+
+#+END_SRC
+    
+*** ë°ì´í„°ë² ì´ìŠ¤ ì´ë¦„ ë° userí™•ì¸
+    - SQL>select * form global_name;
+    - SQL>show user;
 ** Lec 18. JDBC
-   - JAVA ÇÁ·Î±×·¥¿¡¼­ SQL¹®À» ½ÇÇàÇÏ¿© µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ±â À§ÇÑ JAVA *API*
-   - JDBCÀÇ Æ¯Â¡: ´Ù¾çÇÑ µ¥ÀÌÅÍ º£ÀÌ½º¸¦ JDBC¸¦ ÀÌ¿ëÇÏ¿© ÇÏ³ªÀÇ ÇÁ·Î±×·¥À¸·Î °ü¸® ÇÒ ¼ö ÀÖ´Ù.
-   - ¿À¶óÅ¬À» ¼³Ä¡ÇÏ¸é ÀÚµ¿À¸·Î ¼³Ä¡µÇ´Â Å¬·¡½º ÆÄÀÏÀ» ÀÌÅ¬¸³½º·Î º¹»çÇÏ¸é µÈ´Ù.
-*** JAVA && Oracle ¿¬µ¿À» À§ÇÑ È¯°æ¼³Á¤
-    1. classpath È®ÀÎ, eclipse -> windows -> preferenecs -> java -> build path -> JRE_LIB
+   - JAVA í”„ë¡œê·¸ë¨ì—ì„œ SQLë¬¸ì„ ì‹¤í–‰í•˜ì—¬ ë°ì´í„°ë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•œ JAVA *API*
+   - JDBCì˜ íŠ¹ì§•: ë‹¤ì–‘í•œ ë°ì´í„° ë² ì´ìŠ¤ë¥¼ JDBCë¥¼ ì´ìš©í•˜ì—¬ í•˜ë‚˜ì˜ í”„ë¡œê·¸ë¨ìœ¼ë¡œ ê´€ë¦¬ í•  ìˆ˜ ìˆë‹¤.
+   - ì˜¤ë¼í´ì„ ì„¤ì¹˜í•˜ë©´ ìë™ìœ¼ë¡œ ì„¤ì¹˜ë˜ëŠ” í´ë˜ìŠ¤ íŒŒì¼ì„ ì´í´ë¦½ìŠ¤ë¡œ ë³µì‚¬í•˜ë©´ ëœë‹¤.
+*** JAVA && Oracle ì—°ë™ì„ ìœ„í•œ í™˜ê²½ì„¤ì •
+    1. classpath í™•ì¸, eclipse -> windows -> preferenecs -> java -> build path -> JRE_LIB
        #+CAPTION: Eclipse Class Path Check
        #+NAME:   fig:SED-HR4049
 [[./images/class_path.jpg][class path]]
-    1. ojdbc6_g.jar¸¦ º¹»çÇÏ±â 
+    1. ojdbc6_g.jarë¥¼ ë³µì‚¬í•˜ê¸° 
     2. C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib\ojdbc6_g.jar
-    3. -> C:\Program Files\Java\jre1.8.0_251\lib\extÆú´õ·Î º¹»ç
+    3. -> C:\Program Files\Java\jre1.8.0_251\lib\extí´ë”ë¡œ ë³µì‚¬
        
-*** µ¥ÀÌÅÍ º£ÀÌ½º ¿¬°á ¼ø¼­
-    1. JDBC µå¶óÀÌ¹ö ·Îµå    DriverManager Class.forName("oracle.jdbc.dirver.OracleDriver");
-    2. µ¥ÀÌÅÍ º£ÀÌ½º ¿¬°á     Connection    DriverManager.getConnection(JdBC URL, °èÁ¤¾ÆÀÌµğ, ºñ¹Ğ¹øÈ£);
-    3. SQL¹® ½ÇÇà           Statement     connection.createStatement();
-    4. µ¥ÀÌÅÍ º£ÀÌ½º ¿¬°á ÇØÁ¦ ResultSet    statement.executeQuery(), statement.executeUpdate();
+*** ë°ì´í„° ë² ì´ìŠ¤ ì—°ê²° ìˆœì„œ
+    1. JDBC ë“œë¼ì´ë²„ ë¡œë“œ    DriverManager Class.forName("oracle.jdbc.dirver.OracleDriver");
+    2. ë°ì´í„° ë² ì´ìŠ¤ ì—°ê²°     Connection    DriverManager.getConnection(JdBC URL, ê³„ì •ì•„ì´ë””, ë¹„ë°€ë²ˆí˜¸);
+    3. SQLë¬¸ ì‹¤í–‰           Statement     connection.createStatement();
+    4. ë°ì´í„° ë² ì´ìŠ¤ ì—°ê²° í•´ì œ ResultSet    statement.executeQuery(), statement.executeUpdate();
        
-*** Statement°´Ã¼ »ìÆìº¸±â
-    - interface -> executeQuery() : SQL½ÇÇà ÈÄ ¿©·¯°³ÀÇ °á°ú°ª »ı±â´Â °æ¿ì »ç¿ë.(ex. select)
-    -           -> executeUpdate(): SQL½ÇÇà ÈÄ Å×ÀÌºíÀÇ ³»¿ë¸¸ º¯°æµÇ´Â °æ¿ì »ç¿ë.(ex. insert, delete, update)
+*** Statementê°ì²´ ì‚´í´ë³´ê¸°
+    - interface -> executeQuery() : SQLì‹¤í–‰ í›„ ì—¬ëŸ¬ê°œì˜ ê²°ê³¼ê°’ ìƒê¸°ëŠ” ê²½ìš° ì‚¬ìš©.(ex. select)
+    -           -> executeUpdate(): SQLì‹¤í–‰ í›„ í…Œì´ë¸”ì˜ ë‚´ìš©ë§Œ ë³€ê²½ë˜ëŠ” ê²½ìš° ì‚¬ìš©.(ex. insert, delete, update)
       
-**** executeQuery½ÇÇà ÈÄ ¹İÈ¯µÇ´Â ·¹ÄÚµå ¼Â
-     - executeQuery() -> ResultSet(next(), previous(), first(), last(), get¸Ş¼Òµå(getString(), getInt()))
-     - BOF -> Ã¹¹øÂ° row  data, µÎ¹øÂ° row data, 
+**** executeQueryì‹¤í–‰ í›„ ë°˜í™˜ë˜ëŠ” ë ˆì½”ë“œ ì…‹
+     - executeQuery() -> ResultSet(next(), previous(), first(), last(), getë©”ì†Œë“œ(getString(), getInt()))
+     - BOF -> ì²«ë²ˆì§¸ row  data, ë‘ë²ˆì§¸ row data, 
        
 |------------------|
 | BOF              |
-| Ã¹¹øÂ° row  data |
-| µÎ¹øÂ° row data, |
+| ì²«ë²ˆì§¸ row  data |
+| ë‘ë²ˆì§¸ row data, |
 | ...              |
-| N¹øÂ° row data   |
+| Në²ˆì§¸ row data   |
 | EOF              |
 |------------------|
 
-       
 *** sqlplus script load
     - SQL>@c:\aa.sql
     - C:\>exit | sqlplus scott/tiger @c:\aa.sql
 
-      
 * HTML TAGS
-  - td : a cell in a table
-  - tr : a row in a table
-  - table : a table
-  - input : a input control
-  - script : a client-side script
-  - section : a section in a document
+  - <table  >: a table
+  - <tr     >: a row in a table
+  - <td     >: a cell in a table
+  - <input  >: a input control
+  - <script >: a client-side script
+  - <section> : a section in a document
+  - <br>
 ** [[https://www.w3schools.com/tags/tag_nav.asp][<nav>]]  
    - defines *a set of navigation links.*
    - The <nav> element is intended only for major block of navigation links.
@@ -734,7 +751,7 @@ background-color : yellow
     - This <p> element will be styled according to class="center" and to class="large"
 
     
-** [[https://www.w3schools.com/TAGS/ref_standardattributes.asp][section ÅÂ±×]]
+** [[https://www.w3schools.com/TAGS/ref_standardattributes.asp][section íƒœê·¸]]
    - defines a section in a document
    - supports the Global Attribute in HTML
    - supports the Event Attribute in HTML
@@ -791,6 +808,54 @@ background-color : yellow
      | method    | get/post | Specifies the HTTP method to use when sending form-data.       |
      |-----------+----------+----------------------------------------------------------------|
     
+     
+* Java Script
+** [[https://www.w3schools.com/js/js_window.asp][window]]   
+*** [[https://www.w3schools.com/jsref/met_win_open.asp][open()]]
+   - The open() method opens a new brower window, or a new tab, depending on your
+   - brower settings and the parameter values
+     
+#+BEGIN_SRC javascript
+window.open(URL, name, specs, replace)
+#+END_SRC
+*** [[https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage][postMessage()]]
+
+**  [[https://www.w3schools.com/js/js_htmldom.asp][document]] 
+*** [[https://www.w3schools.com/jsref/met_element_queryselector.asp][querySelector()]]
+*** [[ https://www.w3schools.com/jsref/dom_obj_anchor.asp][getElementById()]] 
+    
+** [[https://www.w3schools.com/jsref/met_element_addeventlistener.asp][addEventListener()]]     
+   - The addEventlistener() method attataches an event handler to the specified element.
+     
+
+#+BEGIN_SRC javascript
+<script>
+function update(){
+	if(document.forms.form1.Id.value.trim() == ""){		
+		alert("í•™ë²ˆì´ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+		return false;
+	}
+	if(document.forms.form1.Kor.value.trim() == ""){		
+		alert("êµ­ì–´ì ìˆ˜ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+		return false;
+	}
+	if(document.forms.form1.Eng.value.trim() == ""){		
+		alert("ì˜ì–´ì ìˆ˜ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+		return false;
+	}
+	if(document.forms.form1.Mat.value.trim() == ""){		
+		alert("ìˆ˜í•™ì ìˆ˜ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+		return false;
+	}
+	if(document.forms.form1.His.value.trim() == ""){		
+		alert("ì—­ì‚¬ì ìˆ˜ê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+		return false;
+	}
+	alert("ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
+	document.forms.form1.submit();	
+}
+</script>
+#+END_SRC
 * Misc
-** [[https://m.blog.naver.com/goddlaek/220901890910][CGI ±×¸®°í Servlet°ú JSP¿ÍÀÇ °ü°è]]
+** [[https://m.blog.naver.com/goddlaek/220901890910][CGI ê·¸ë¦¬ê³  Servletê³¼ JSPì™€ì˜ ê´€ê³„]]
    - CGI
