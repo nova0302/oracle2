@@ -1,47 +1,29 @@
-/*ªË¡¶«œ±‚¿¸, constraint(foreign key) ∏¶ ªË¡¶*/
+/*ÏÇ≠Ï†úÌïòÍ∏∞Ï†Ñ, constraint(foreign key) Î•º ÏÇ≠Ï†ú*/
 ALTER TABLE tbl_salelist_01 DROP CONSTRAINT FK_PCODE;
+ALTER TABLE tbl_salelist_01 DROP CONSTRAINT FK_SCODE;
 
-/* ≈◊¿Ã∫ÌªË¡¶ */
+/* ÌÖåÏù¥Î∏îÏÇ≠Ï†ú */
 DROP TABLE tbl_product_01; 
 
-/* ¡¶«∞ ≈◊¿Ã∫Ì ∏∏µÈ±‚ */
+/* Ï†úÌíà ÌÖåÏù¥Î∏î ÎßåÎì§Í∏∞ */
 CREATE TABLE tbl_product_01( 
 pcode VARCHAR2(10) NOT NULL PRIMARY KEY,
 name  VARCHAR2(20),
 cost  NUMBER(10)
 );
 
-/* record ¿‘∑¬*/
-INSERT INTO tbl_product_01 VALUES('AA01', 'æ∆∏ﬁ∏Æƒ´≥Î', 3000);
-INSERT INTO tbl_product_01 VALUES('AA02', 'ø°Ω∫«¡∑πº“', 3500);
-INSERT INTO tbl_product_01 VALUES('AA03', 'ƒ´∆‰∂Û∂º',   4000);
-INSERT INTO tbl_product_01 VALUES('AA04', 'ƒ´∂Û∏·∏∂≥¢', 4500);
-INSERT INTO tbl_product_01 VALUES('AA05', 'ƒ´«™ƒ°≥Î',   5000);
-INSERT INTO tbl_product_01 VALUES('AA06', '√ ƒ⁄∑—ƒ…¿Õ', 6000);
-INSERT INTO tbl_product_01 VALUES('AA07', '≥Ï¬˜∑—ƒ…¿Õ', 6500);
-INSERT INTO tbl_product_01 VALUES('AA08', '∏¡∞Ì¡ÍΩ∫',   7000);
-INSERT INTO tbl_product_01 VALUES('AA09', '«÷√›ƒ⁄',     2500);
-
-
-ALTER TABLE tbl_salelist_01 DROP CONSTRAINT FK_SCODE;
-
 DROP TABLE tbl_shop_01;
 
-/* ∏≈¡° ≈◊¿Ã∫Ì ∏∏µÈ±‚ */
+/* Îß§Ï†ê ÌÖåÏù¥Î∏î ÎßåÎì§Í∏∞ */
 CREATE TABLE tbl_shop_01(
 scode VARCHAR2(10) NOT NULL PRIMARY KEY,
 sname VARCHAR2(20)
 );
-INSERT INTO tbl_shop_01 VALUES('S001', '∞≠≥≤¡°'  );
-INSERT INTO tbl_shop_01 VALUES('S002', '∞≠≥≤¡°'  );
-INSERT INTO tbl_shop_01 VALUES('S003', '∞≠µø¡°'  );
-INSERT INTO tbl_shop_01 VALUES('S004', '∞≠∫œ¡°'  );
-INSERT INTO tbl_shop_01 VALUES('S005', 'µø¥ÎπÆ¡°');
-INSERT INTO tbl_shop_01 VALUES('S006', '¿Œ√µ¡°'  );
 
 DROP TABLE tbl_salelist_01;
 
-/* ∆«∏≈ ¡§∫∏ ≈◊¿Ã∫Ì ∏∏µÈ±‚ */
+
+/* ÌåêÎß§ Ï†ïÎ≥¥ ÌÖåÏù¥Î∏î ÎßåÎì§Í∏∞ */
 CREATE TABLE tbl_salelist_01(
 saleno   NUMBER(10) NOT NULL PRIMARY KEY,
 pcode    VARCHAR2(10) NOT NULL,
@@ -51,20 +33,47 @@ amount   NUMBER(10),
 CONSTRAINT FK_SCODE FOREIGN KEY(scode) REFERENCES tbl_shop_01(scode),
 CONSTRAINT FK_PCODE FOREIGN KEY(pcode) REFERENCES tbl_product_01(pcode)
 );
-INSERT INTO tbl_salelist_01 VALUES(100001, 'AA01', TO_DATE('20200102', 'YYYYMMDD'), 'S001', 50);
-INSERT INTO tbl_salelist_01 VALUES(100002, 'AA03', TO_DATE('20200202', 'YYYYMMDD'), 'S002', 40);
-INSERT INTO tbl_salelist_01 VALUES(100003, 'AA04', TO_DATE('20200302', 'YYYYMMDD'), 'S002', 20);
-INSERT INTO tbl_salelist_01 VALUES(100004, 'AA04', TO_DATE('20200402', 'YYYYMMDD'), 'S001', 30);
-INSERT INTO tbl_salelist_01 VALUES(100005, 'AA05', TO_DATE('20200502', 'YYYYMMDD'), 'S004', 40);
-INSERT INTO tbl_salelist_01 VALUES(100006, 'AA03', TO_DATE('20200902', 'YYYYMMDD'), 'S004', 30);
-INSERT INTO tbl_salelist_01 VALUES(100007, 'AA01', TO_DATE('20200702', 'YYYYMMDD'), 'S003', 10);
-INSERT INTO tbl_salelist_01 VALUES(100008, 'AA04', TO_DATE('20200901', 'YYYYMMDD'), 'S003', 20);
-INSERT INTO tbl_salelist_01 VALUES(100009, 'AA01', TO_DATE('20200902', 'YYYYMMDD'), 'S001', 30);
-INSERT INTO tbl_salelist_01 VALUES(100010, 'AA05', TO_DATE('20200903', 'YYYYMMDD'), 'S002', 40);
-INSERT INTO tbl_salelist_01 VALUES(100011, 'AA01', TO_DATE('20200904', 'YYYYMMDD'), 'S001', 50);
-INSERT INTO tbl_salelist_01 VALUES(100012, 'AA03', TO_DATE('20200905', 'YYYYMMDD'), 'S002', 40);
-INSERT INTO tbl_salelist_01 VALUES(100013, 'AA04', TO_DATE('20200906', 'YYYYMMDD'), 'S002', 50);
-INSERT INTO tbl_salelist_01 VALUES(100014, 'AA05', TO_DATE('20200902', 'YYYYMMDD'), 'S004', 20);
-INSERT INTO tbl_salelist_01 VALUES(100015, 'AA01', TO_DATE('20200902', 'YYYYMMDD'), 'S003', 20);
+
+/* Ï†úÌíà record ÏûÖÎ†•*/
+INSERT INTO tbl_product_01 VALUES('AA01', 'ÏïÑÎ©îÎ¶¨Ïπ¥ÎÖ∏', 3000);
+INSERT INTO tbl_product_01 VALUES('AA02', 'ÏóêÏä§ÌîÑÎ†àÏÜå', 3500);
+INSERT INTO tbl_product_01 VALUES('AA03', 'Ïπ¥ÌéòÎùºÎñº',   4000);
+INSERT INTO tbl_product_01 VALUES('AA04', 'Ïπ¥ÎùºÎ©úÎßàÎÅº', 4500);
+INSERT INTO tbl_product_01 VALUES('AA05', 'Ïπ¥Ìë∏ÏπòÎÖ∏',   5000);
+INSERT INTO tbl_product_01 VALUES('AA06', 'Ï¥àÏΩîÎ°§ÏºÄÏùµ', 6000);
+INSERT INTO tbl_product_01 VALUES('AA07', 'ÎÖπÏ∞®Î°§ÏºÄÏùµ', 6500);
+INSERT INTO tbl_product_01 VALUES('AA08', 'ÎßùÍ≥†Ï•¨Ïä§',   7000);
+INSERT INTO tbl_product_01 VALUES('AA09', 'Ìï´Ïµ∏ÏΩî',     2500);
+
+
+
+INSERT INTO tbl_shop_01 VALUES('S001', 'Í∞ïÎÇ®Ï†ê'  );
+INSERT INTO tbl_shop_01 VALUES('S002', 'Í∞ïÎÇ®Ï†ê'  );
+INSERT INTO tbl_shop_01 VALUES('S003', 'Í∞ïÎèôÏ†ê'  );
+INSERT INTO tbl_shop_01 VALUES('S004', 'Í∞ïÎ∂ÅÏ†ê'  );
+INSERT INTO tbl_shop_01 VALUES('S005', 'ÎèôÎåÄÎ¨∏Ï†ê');
+INSERT INTO tbl_shop_01 VALUES('S006', 'Ïù∏Ï≤úÏ†ê'  );
+
+DROP SEQUENCE seq_saleno;
+CREATE SEQUENCE seq_saleno
+START WITH 100001
+INCREMENT BY 1;
+
+/* ÌåêÎß§Ï†ïÎ≥¥ record ÏûÖÎ†•*/
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA01', TO_DATE('20200102', 'YYYYMMDD'), 'S001', 50);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA03', TO_DATE('20200202', 'YYYYMMDD'), 'S002', 40);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA04', TO_DATE('20200302', 'YYYYMMDD'), 'S002', 20);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA04', TO_DATE('20200402', 'YYYYMMDD'), 'S001', 30);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA05', TO_DATE('20200502', 'YYYYMMDD'), 'S004', 40);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA03', TO_DATE('20200902', 'YYYYMMDD'), 'S004', 30);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA01', TO_DATE('20200702', 'YYYYMMDD'), 'S003', 10);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA04', TO_DATE('20200901', 'YYYYMMDD'), 'S003', 20);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA01', TO_DATE('20200902', 'YYYYMMDD'), 'S001', 30);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA05', TO_DATE('20200903', 'YYYYMMDD'), 'S002', 40);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA01', TO_DATE('20200904', 'YYYYMMDD'), 'S001', 50);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA03', TO_DATE('20200905', 'YYYYMMDD'), 'S002', 40);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA04', TO_DATE('20200906', 'YYYYMMDD'), 'S002', 50);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA05', TO_DATE('20200902', 'YYYYMMDD'), 'S004', 20);
+INSERT INTO tbl_salelist_01 VALUES(seq_saleno.NEXTVAL, 'AA01', TO_DATE('20200902', 'YYYYMMDD'), 'S003', 20);
 
 COMMIT;
