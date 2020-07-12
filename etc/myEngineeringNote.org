@@ -64,7 +64,7 @@
       
 ** Lec 6 
    
-*** Servlet 장동 순서 
+*** Servlet 작동 순서 
    - 클라이언트에서 servlet요청이 들어오면 서버는 servlet컨테이너를 만들고, 요청이 있을 때마다 쓰레드를 생성
    - 웹크라우저 -> 웹서버 -> 웹어플리케이션 서버(WAS) -> servlet 컨테이너(1. 쓰레드생성, 2. servlet객체생성)
    - Servlet vs other cgi(jsp)
@@ -389,7 +389,6 @@ out.println(Arrays.toString(iArr)+ "<br/>");
       - uri 및 prifix속성이 있으며, uri는 태그라이브러리의 위치 값을 가지며,  prifix는 태그를 가리키는 이름 값을 가진다.
       - taglib 지시자에 대한 학습은 추후에 살펴볼 JSTL학습 때 다시 살펴보기로 한다.
 
-	
 **** 주석
      - html <!-- 주석내용 -->
      - jsp <%-- 주석내용 --%>
