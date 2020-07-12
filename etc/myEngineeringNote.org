@@ -817,8 +817,43 @@ background-color : yellow
      
 #+BEGIN_SRC javascript
 window.open(URL, name, specs, replace)
+function fn_search() {
+		var child = window.open("popup.jsp", "검색", "width=400px,height=300px");
+		child.addEventListener("message", function(e) {
+			var result = e.data.split(':');
+			location.href="index.jsp?section=select&opt=" + result[0] + "&value=" + result[1];
+		});
+	}
 #+END_SRC
 *** [[https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage][postMessage()]]
+    
+#+BEGIN_SRC javascript
+	<script>
+		function fn_result() {
+			var radio = document.querySelectorAll("input[type='radio']");
+			var opt;
+			var value;
+			for(var i = 0; i < radio.length; i++) {
+				if (radio[i].checked) {
+					opt = radio[i].value;
+					console.log(opt);
+					if (opt == "saledate") {
+						var fromElem = document.querySelector("input[name='"+opt+"from']");
+						var toElem = document.querySelector("input[name='"+opt+"to']");
+						value = fromElem.value + "~" + toElem.value;
+					} else {
+						var valueElem = document.querySelector("input[name='"+opt+"']");
+						value = valueElem.value;
+					}
+					
+				}
+			}
+			//document.write(opt+value);
+			parent.postMessage(opt + ":" + value);
+			window.close();
+		}	
+	</script>
+#+END_SRC
 
 **  [[https://www.w3schools.com/js/js_htmldom.asp][document]] 
 *** [[https://www.w3schools.com/jsref/met_element_queryselector.asp][querySelector()]]
