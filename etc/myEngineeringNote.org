@@ -1010,6 +1010,9 @@ function update(){
 ** [[https://m.blog.naver.com/goddlaek/220901890910][CGI 그리고 Servlet과 JSP와의 관계]]
    - CGI
      
+** Java Reference
+   - [[https://www.w3schools.com/java/ref_keyword_extends.asp%20][extends]] 
+     
 
 * Memo
   - C-x C-m r (euc-kr, utf-8, cp949)
