@@ -41,7 +41,6 @@
     - Menu -> window -> General -> Workspace -> Text file encoding
 
 ** Lec 3. jsp intro
-
 ** Lec 4. servlet intro
    - Servelet 문서 작성 하기
    - web.xml
@@ -56,20 +55,20 @@
       
 *** web.xml에 서블릿 맵핑
     - 너무 길고, 보안에 노출되어 있는 경로를 간단하게 맵핑하는 것
-    - 기존경로 http://localhost:8090/helloServlet/com.javalec.ex.Helloservlet
-    - URL 맵핑경로 http://localhost:8090/helloservlet/HServlet
+    - 기존경로 [[http://localhost:8090/helloWorld/com.javalec.ex.HelloWorld]]
+    - URL 맵핑경로 [[http://localhost:8090/helloWorld/HWorld]]
     - <servlet-name> : 임의의 이름을 만들어 줍니다.
     - <servlet-class> : 맵핑할 클래스 파일명을 패키지명을 포함하여 정확히 입력합니다.
     - <url-pattern> : servlet-class의 클래스를 매핑할 임의의 이름을 입력합니다. 주의할 점은 '/'으로 시작해야합니다.
 #+BEGIN_SRC xml
 <servlet>
-<servlet-name> helloServlet </servlet-name>
-<servlet-class> com.javalec.ex.HelloServlet </servlet-class>
+<servlet-name> helloWorld </servlet-name>
+<servlet-class> com.javalec.ex.HelloWorld </servlet-class>
 </servlet>
 
 <servlet-mapping>
-<servlet-name> helloServlet </servlet-name>
-<url-pattern> /HServlet </url-pattern>
+<servlet-name> helloWorld </servlet-name>
+<url-pattern> /HW </url-pattern>
 </servlet-mapping>
 #+END_SRC
 
@@ -93,13 +92,13 @@
      - 해당 Application의 이름
        
 #+BEGIN_SRC java
-@WebServlet(name = "HServlet", urlPatterns = { "/HServlet" })
-public class HelloServlet extends HttpServlet {
+@WebServlet(name = "HWorld", urlPatterns = { "/HWorld" })
+public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HelloServlet() {
+    public HelloWorld() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -130,6 +129,7 @@ public class HelloServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		System.out.println("Hello World!!!!");
@@ -329,14 +329,14 @@ request.setCharacterEncoding("UTF-8");
      - 선언 : string name = "Peter";
      - 표현식(결과값) : <%= name>
 
-|------------+----------------------------+-------------------|
-| 지시자     | <%@ %>                     | 페이지 속성       |
-| 주석       | <%-- --%>                  |                   |
-| 선언       | <%! %>                     | 변수, 메소드 선언 |
-| 표현식     | <%= %>                     | 출력              |
-| 스크립트릿 | <% %>                      | JAVA코드          |
-| 액션태그   | <jsp:action> </jsp:action> | 자바빈 연결       |
-|------------+----------------------------+-------------------|
+|--------------------+----------------------------+-------------------|
+| 지시자             | <%@ %>                     | 페이지 속성       |
+| 주석               | <%-- --%>                  |                   |
+| 선언               | <%! %>                     | 변수, 메소드 선언 |
+| 표현식(expression) | <%= %>                     | 출력              |
+| 스크립트릿         | <% %>                      | JAVA코드          |
+| 액션태그           | <jsp:action> </jsp:action> | 자바빈 연결       |
+|--------------------+----------------------------+-------------------|
 
 *** JSP 동작원리
     - JSP가 요청되어 응답하기까지의 과정을 이해하면, 개발에 많은 도움이 된다.
@@ -344,9 +344,9 @@ request.setCharacterEncoding("UTF-8");
     - 그리고 Servlet파일(JAVA)은 컴파일된 후 클래스 파일(.class)로 변환되고, 요청한 클라이언트에게 html형태로 응답한다.
     - C:\web_dev\apache-tomcat-8.0.53\work\Catalina\localhost\Coffee\org\apache\jsp
       
-**** JSP 내부 객체
-     - 개발자가 객체를 생성하지 않고 바로 사용 할 수 있는 객체
-     - JSP에서 제공되는 내부객체는 JSP컨테이너에 의해 Servlet으로 변환될때 자동으로 객체가 생성된다.
+*** JSP 내부 객체
+    - 개발자가 객체를 생성하지 않고 바로 사용 할 수 있는 객체
+    - JSP에서 제공되는 내부객체는 JSP컨테이너에 의해 Servlet으로 변환될때 자동으로 객체가 생성된다.
 ***** 내부 객체의 종류
       - 입출력 객체 : request, response, out
       - 서블릿 객체 : page, config
@@ -804,8 +804,128 @@ SELECT seq_no.CURRVAL FROM dual;
     - SQL>@c:\aa.sql
     - C:\>exit | sqlplus scott/tiger @c:\aa.sql
 
+      
+** Lec 20. DTO, DAO
+   
+*** Sample data for exercise
+#+BEGIN_SRC sql
+CREATE TABLE member(
+name VARCHAR2(20),
+id VARCHAR2(20));
+INSERT INTO member VALUES('Peter', 'pw1');
+INSERT INTO member VALUES('Danny', 'pw2');
+SELECT * FROM member;
+COMMIT;
+#+END_SRC
+
+*** DAO
+#+BEGIN_SRC java
+package com.javalec.daotoex;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class MemberDAO {
+	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	//private String url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
+	private String uid = "system";
+	private String upw = "1234";
+	public MemberDAO() {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public ArrayList<MemberDTO> memberSelect() {
+		ArrayList<MemberDTO> dtos = new ArrayList<MemberDTO>();
+		Connection con =null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		System.out.println("Hello World");
+		try {
+			con = DriverManager.getConnection(url, uid, upw);
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("select * from member");
+			while (rs.next()) {
+				System.out.println("Hello Wrold");
+				String name = rs.getString("name");
+				String id = rs.getString("id");
+				System.out.println(name  + ":" + id);
+				MemberDTO dto = new MemberDTO(name, id);
+				dtos.add(dto);
+			}		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(stmt != null) stmt.close();
+				if(con != null) con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		return dtos;
+	}
+}
+#+END_SRC
+*** DTO
+#+BEGIN_SRC java
+package com.javalec.daotoex;
+
+public class MemberDTO {
+
+	private String name;
+	private String id;
+		
+	public MemberDTO(String name, String id) {
+		this.name = name;
+		this.id = id;	
+	}
+	public String getName() {return name;}
+	public void setName(String name) {this.name = name;}
+	public String getId() {return id;}
+	public void setId(String id) {this.id = id;}
+}
+#+END_SRC
+
+*** index.htlm
+#+BEGIN_SRC html
+<%@page import="com.javalec.daotoex.MemberDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.javalec.daotoex.MemberDAO"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		MemberDAO memberDAO = new MemberDAO();
+		ArrayList<MemberDTO> dtos = memberDAO.memberSelect();
+		
+		for(int i=0; i<dtos.size(); i++) {
+			MemberDTO dto = dtos.get(i);
+			String name = dto.getName();
+			String id = dto.getId();	
+			out.println("이름 : " + name + ", 아이디 : " + id +  "<br />" );
+		}
+		
+	%>
+
+</body>
+</html>
+#+END_SRC
+
 * HTML TAGS
   - <table  >: a table
+  - <th     >: a head in a table
   - <tr     >: a row in a table
   - <td     >: a cell in a table
   - <input  >: a input control
