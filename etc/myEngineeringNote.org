@@ -804,9 +804,7 @@ SELECT seq_no.CURRVAL FROM dual;
     - SQL>@c:\aa.sql
     - C:\>exit | sqlplus scott/tiger @c:\aa.sql
 
-      
 ** Lec 20. DTO, DAO
-   
 *** Sample data for exercise
 #+BEGIN_SRC sql
 CREATE TABLE member(
@@ -816,9 +814,10 @@ INSERT INTO member VALUES('Peter', 'pw1');
 INSERT INTO member VALUES('Danny', 'pw2');
 SELECT * FROM member;
 COMMIT;
+---------- don't forget to commit
 #+END_SRC
 
-*** DAO
+*** DAO(data access object)
 #+BEGIN_SRC java
 package com.javalec.daotoex;
 import java.sql.Connection;
@@ -872,7 +871,7 @@ public class MemberDAO {
 	}
 }
 #+END_SRC
-*** DTO
+*** DTO(data transaction object)
 #+BEGIN_SRC java
 package com.javalec.daotoex;
 
@@ -923,7 +922,19 @@ public class MemberDTO {
 </html>
 #+END_SRC
 
+** Lec 26. 포워딩(Forwarding)
+   - RequestDispatcher Class
+   - HttpServletResponse Class
+     
+*** 26.1 RequestDispatcher Class
+    - *서블릿 또는 JSP에서* 요청을 받은 후 다른 컴포넌트로 요청을 위임 할 수 있다. 그리고 이러한 위임 방법에는 2개의 클래스를 이용한다.
+    - 하나는 RequestDispatcher Class이고, 또하나는 HttpServletResponse Class이다.
+    - RequestDispatcher 클래스의 경우 요청받은 객체(request)를 위임하는 컴포넌트에 *동일하게* 전달 할 수 있다.
+     
+
+
 * HTML TAGS
+  - <form  >: a form
   - <table  >: a table
   - <th     >: a head in a table
   - <tr     >: a row in a table
@@ -947,6 +958,9 @@ public class MemberDTO {
 ** [[https://www.w3schools.com/tags/ref_attributes.asp][HTML Attributes]]
    - class : Specifies one or more classnames for an element
    - style : Specifies an inline CSS style for an element
+     
+** [[https://www.w3schools.com/html/html_entities.asp][HTML Entities]] 
+   - Reserved characters in HTML must be replaced with character entities.
 
 * CSS
   - the acronym for *Cacading Style Sheet*
@@ -1051,43 +1065,41 @@ background-color : yellow
    - brower settings and the parameter values
      
 #+BEGIN_SRC javascript
-window.open(URL, name, specs, replace)
-function fn_search() {
-		var child = window.open("popup.jsp", "검색", "width=400px,height=300px");
-		child.addEventListener("message", function(e) {
-			var result = e.data.split(':');
-			location.href="index.jsp?section=select&opt=" + result[0] + "&value=" + result[1];
-		});
-	}
+  //window.open(URL, name, specs, replace)
+  function fn_search() {
+      var child = window.open("popup.jsp", "검색", "width=400px,height=300px");
+      child.addEventListener("message", function(e) {
+	  var result = e.data.split(':');
+	  location.href="index.jsp?section=select&opt=" + result[0] + "&value=" + result[1];
+      });
+  }
 #+END_SRC
 *** [[https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage][postMessage()]]
     
 #+BEGIN_SRC javascript
-	<script>
-		function fn_result() {
-			var radio = document.querySelectorAll("input[type='radio']");
-			var opt;
-			var value;
-			for(var i = 0; i < radio.length; i++) {
-				if (radio[i].checked) {
-					opt = radio[i].value;
-					console.log(opt);
-					if (opt == "saledate") {
-						var fromElem = document.querySelector("input[name='"+opt+"from']");
-						var toElem = document.querySelector("input[name='"+opt+"to']");
-						value = fromElem.value + "~" + toElem.value;
-					} else {
-						var valueElem = document.querySelector("input[name='"+opt+"']");
-						value = valueElem.value;
-					}
-					
-				}
-			}
-			//document.write(opt+value);
-			parent.postMessage(opt + ":" + value);
-			window.close();
-		}	
-	</script>
+  function fn_result() {
+      var radio = document.querySelectorAll("input[type='radio']");
+      var opt;
+      var value;
+      for(var i = 0; i < radio.length; i++) {
+	  if (radio[i].checked) {
+	      opt = radio[i].value;
+	      console.log(opt);
+	      if (opt == "saledate") {
+		  var fromElem = document.querySelector("input[name='"+opt+"from']");
+		  var toElem = document.querySelector("input[name='"+opt+"to']");
+		  value = fromElem.value + "~" + toElem.value;
+	      } else {
+		  var valueElem = document.querySelector("input[name='"+opt+"']");
+		  value = valueElem.value;
+	      }
+
+	  }
+      }
+      //document.write(opt+value);
+      parent.postMessage(opt + ":" + value);
+      window.close();
+  }	
 #+END_SRC
 
 **  [[https://www.w3schools.com/js/js_htmldom.asp][document]] 
@@ -1133,6 +1145,11 @@ function update(){
 ** Java Reference
    - [[https://www.w3schools.com/java/ref_keyword_extends.asp%20][extends]] 
      
+** jump to another page
+   - document.location.href = "url"
+   - response.sendRedirect("url");
+   - jsp:forward page="url"
+   - javascript:window.location = "url"
 
 * Memo
   - C-x C-m r (euc-kr, utf-8, cp949)
