@@ -764,6 +764,10 @@ SELECT seq_no.CURRVAL FROM dual;
 *** 데이터베이스 이름 및 user확인
     - SQL>select * form global_name;
     - SQL>show user;
+      
+*** [[https://javaconceptoftheday.com/difference-between-executequery-executeupdate-execute-in-jdbc/][extcuteUpdate vs executeQuery]] 
+    - executeQuery -> SELECT
+    - executeUpdate -> INSERT, UPDATE, DELETE, ALTER
 ** Lec 18. JDBC
    - JAVA 프로그램에서 SQL문을 실행하여 데이터를 관리하기 위한 JAVA *API*
    - JDBC의 특징: 다양한 데이터 베이스를 JDBC를 이용하여 하나의 프로그램으로 관리 할 수 있다.
@@ -931,7 +935,52 @@ public class MemberDTO {
     - 하나는 RequestDispatcher Class이고, 또하나는 HttpServletResponse Class이다.
     - RequestDispatcher 클래스의 경우 요청받은 객체(request)를 위임하는 컴포넌트에 *동일하게* 전달 할 수 있다.
      
+#+BEGIN_SRC java
+  @WebServlet("/RequestObj")
+  public class RequestObj extends HttpServlet {
+      private static final long serialVersionUID = 1L;
+       
+      /**
+       ,* @see HttpServlet#HttpServlet()
+       ,*/
+      public RequestObj() {
+	  super();
+	  // TODO Auto-generated constructor stub
+      }
 
+      /**
+       ,* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+       ,*/
+      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  // TODO Auto-generated method stub
+	  System.out.println("doGet");
+	  actionDo(request, response);
+      }
+
+      /**
+       ,* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+       ,*/
+      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  // TODO Auto-generated method stub
+	  System.out.println("doPost");
+	  actionDo(request, response);
+      }
+	
+      private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  // TODO Auto-generated method stub
+	  System.out.println("actionDo");
+		
+	  request.setAttribute("id", "abcde");
+	  request.setAttribute("pw", "12345");
+		
+	  RequestDispatcher dispatcher = request.getRequestDispatcher("/dispacherJsp.jsp");
+	  dispatcher.forward(request, response);
+		
+      }
+
+  }
+
+#+END_SRC
 
 * HTML TAGS
   - <form  >: a form
