@@ -62,22 +62,22 @@ SELECT * FROM tb_rent;
 
 DELETE FROM tb_book WHERE type IS NULL;
 
-CREATE OR REPLACE VIEW vState
+CREATE OR REPLACE VIEW vbStatus
 AS
 SELECT b.name "책이름", b.type "책장르", TO_CHAR(r.rent_date, 'YYYY-MM-DD') "대여날짜", m.name "대여회원"
 FROM tb_book b, tb_member m, tb_rent r
 WHERE r.bcode = b.bcode and r.mcode=m.mcode;
 
-CREATE OR REPLACE VIEW vStateB
+CREATE OR REPLACE VIEW vbStatusB
 AS
-SELECT * FROM vState ORDER BY "책이름";
+SELECT * FROM vbStatus ORDER BY "책이름";
 
-CREATE OR REPLACE VIEW vStateR
+CREATE OR REPLACE VIEW vbStatusR
 AS
-SELECT * FROM vState ORDER BY "대여날짜";
+SELECT * FROM vbStatus ORDER BY "대여날짜";
 
-SELECT * FROM vStateB;
-SELECT * FROM vStateR;
-DROP VIEW bState;
-DROP VIEW viewBStateB;
+SELECT * FROM vStatusB;
+SELECT * FROM vStatusR;
+--DROP VIEW vbStatus;
+--DROP VIEW viewBStateB;
 COMMIT;
