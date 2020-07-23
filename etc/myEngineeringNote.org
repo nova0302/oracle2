@@ -1206,4 +1206,6 @@ function update(){
   - SQL>select * from global_name;
   - shutdown immediate
   - startup
+  - [[https://stackoverflow.com/questions/19766963/passing-arraylist-from-servlet-to-jsp]]
+
 
