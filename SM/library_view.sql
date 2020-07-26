@@ -76,25 +76,11 @@ CREATE OR REPLACE VIEW vbStatusR
 AS
 SELECT * FROM vbStatus ORDER BY "´ë¿©³¯Â¥";
 
+SELECT * FROM vbStatus;
 SELECT * FROM vbStatusB;
 SELECT * FROM vbStatusR;
 --DROP VIEW vbStatus;
 --DROP VIEW viewBStateB;
-
-CREATE OR REPLACE VIEW vTemp
-AS
-SELECT tr.mCode mCode, COUNT(tr.bCode) nRent 
-FROM tb_rent tr
-GROUP BY tr.mCode;
-
-SELECT * FROM vTemp;
-
-CREATE OR REPLACE VIEW vmList
-AS
-SELECT tm.name n, tm.tel t, v.nRent nRent
-FROM vTemp v, tb_member tm
-WHERE v.mcode = tm.mcode;
-
-SELECT * FROM vmList;
-
+SELECT name m, tel t FROM tb_member;
+SELECT COUNT(name) FROM tb_book WHERE name='´Ô²¨Á¤' and type='¿ª»ç';
 COMMIT;
