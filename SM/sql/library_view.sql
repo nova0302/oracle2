@@ -81,6 +81,7 @@ SELECT * FROM vbStatusR;
 --DROP VIEW vbStatus;
 --DROP VIEW viewBStateB;
 
+
 CREATE OR REPLACE VIEW vTemp
 AS
 SELECT tr.mCode mCode, COUNT(tr.bCode) nRent 
