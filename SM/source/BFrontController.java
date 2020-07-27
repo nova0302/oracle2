@@ -11,30 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.ex.command.LCommand;
 import com.javalec.ex.command.LMListCommand;
+import com.javalec.ex.command.LMRegisterCommand;
 import com.javalec.ex.command.LRegisterCommand;
 import com.javalec.ex.command.LStatusCommand;
 
-/*
-import com.javalec.ex.command.BCommand;
-import com.javalec.ex.command.BContentCommand;
-import com.javalec.ex.command.BDeleteCommand;
-import com.javalec.ex.command.BListCommand;
-import com.javalec.ex.command.BModifyCommand;
-import com.javalec.ex.command.BReplyCommand;
-import com.javalec.ex.command.BReplyViewCommand;
-import com.javalec.ex.command.BWriteCommand;
-*/
 /**
- * Servlet implementation class LFrontController
+ * Servlet implementation class BFrontController
  */
 @WebServlet("*.do")
-public class LFrontController extends HttpServlet {
+public class BFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LFrontController() {
+    public BFrontController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +34,7 @@ public class LFrontController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			actionDo(request, response);
+		actionDo(request, response);
 	}
 
 	/**
@@ -52,20 +43,19 @@ public class LFrontController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		actionDo(request, response);
 	}
-	
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("actionDo!!!!!!");	
-		request.setCharacterEncoding("utf-8");	
+		System.out.println("33331234actionDo!!!!!");		
+		request.setCharacterEncoding("utf-8");
 		
 		String viewPage = null;
 		LCommand command = null;
 		
-		String uri = request.getRequestURI();
+		String uri = request.getRequestURI();	
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
-		if(com.equals("/bRegView.do")){  /*   도서등록   */
+		if(com.equals("/bRegView.do")){ /*   도서등록   */
 			System.out.println("bRegView");
 			viewPage = "bRegView.jsp";	
 		}else if(com.equals("/bReg.do")){
@@ -73,26 +63,47 @@ public class LFrontController extends HttpServlet {
 			command = new LRegisterCommand();
 			command.execute(request, response);
 			viewPage = "bRegView.jsp";	
-		}else if(com.equals("/bStatusView.do")){/*   도서현황 */
-			System.out.println("bStatusView");
-			command = new LStatusCommand();
-			command.execute(request, response);		
-			viewPage = "bStatusView.jsp";
 		}else if(com.equals("/mRegView.do")){/*   회원등록   */
 			System.out.println("mRegView");
 			viewPage = "mRegView.jsp";	
 		}else if(com.equals("/mReg.do")){
 			System.out.println("mReg");
-			command = new LRegisterCommand();
+			command = new LMRegisterCommand();
 			command.execute(request, response);
 			viewPage = "mRegView.jsp";	
+		}else if(com.equals("/statView.do")){/*  통 계 */
+			System.out.println("statView");
+			viewPage = "statView.jsp";	
 		}else if(com.equals("/mListView.do")){/*   회원현황 */
 			System.out.println("mListView");
 			command = new LMListCommand();
 			command.execute(request, response);
 			viewPage = "mListView.jsp";	
+		}else if(com.equals("/bStatusView.do")){/*   도서현황 */
+			System.out.println("bStatusView");
+			command = new LStatusCommand(0);
+			command.execute(request, response);
+			viewPage = "bStatusView.jsp";	
+		}else if(com.equals("/bStatusViewB.do")){/*   도서현황 */
+			System.out.println("bStatusView");
+			command = new LStatusCommand(1);
+			command.execute(request, response);
+			viewPage = "bStatusView.jsp";	
+		}else if(com.equals("/bStatusViewR.do")){/*   도서현황 */
+			System.out.println("bStatusView");
+			command = new LStatusCommand(2);
+			command.execute(request, response);
+			viewPage = "bStatusView.jsp";	
+		}else if(com.equals("/bSearch.do")){/*   도서검색 */
+			System.out.println("bStatusView & bSearch");
+			//command = new LStatusCommand(0);
+			//command.execute(request, response);
+			viewPage = "testView.jsp";	
 		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);	
 	}
+
+
 }

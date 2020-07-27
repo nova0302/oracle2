@@ -6,18 +6,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.ex.dao.LDao;
-import com.javalec.ex.dto.LMDto;
+import com.javalec.ex.dto.LDto;
 
-public class LMListCommand implements LCommand {
-
+public class LStatusCommand implements LCommand {
+	int sel=0;
+	public LStatusCommand(int sel){
+		this.sel = sel;
+	}
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		LDao dao = new LDao();
-		ArrayList<LMDto> dtos = dao.mList();
-		request.setAttribute("list", dtos);
-		request.setAttribute("name", "Peter");
-		
+		ArrayList<LDto> dtos = dao.bStatus(sel);
+		request.setAttribute("bStatusView", dtos);
 	}
 
 }

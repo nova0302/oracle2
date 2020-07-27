@@ -43,10 +43,10 @@ for(int i=0; i<dtos.size() ; i++){
 <tr>
 <td><%= dto.getmBName() %></td>
 <td><%= dto.getmBType() %> </td>
-<td><%= 0				 %> </td>
+<td><%= dto.getmIsRented() %> </td>
 <td><%= dto.getmRDate() %> </td>
 <td><%= dto.getmMName() %> </td>
-<td><%= 0 				%> </td>
+<td><%= dto.getmRent()	%> </td>
 </tr>
 <%
 }
@@ -59,7 +59,7 @@ for(int i=0; i<dtos.size() ; i++){
 
 <script>
 	function fn_search() {
-		var child = window.open("popup.jsp", "검색", "width=300px,height=150px;");
+		var child = window.open("bSearchView.jsp", "검색", "width=300px,height=150px;");
 		child.addEventListener("message", function(e) {
 		System.out.println(e);
 			//var result = e.data.split(':');
