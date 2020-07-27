@@ -64,9 +64,16 @@ DELETE FROM tb_book WHERE type IS NULL;
 
 CREATE OR REPLACE VIEW vbStatus
 AS
-SELECT b.name "책이름", b.type "책장르", TO_CHAR(r.rent_date, 'YYYY-MM-DD') "대여날짜", m.name "대여회원"
-FROM tb_book b, tb_member m, tb_rent r
-WHERE r.bcode = b.bcode and r.mcode=m.mcode;
+SELECT 
+tb.name "책이름", 
+tb.type "책장르", 
+NVL2(tr.bcode,'대여중', '대여가능') "대여상태", 
+NVL(TO_CHAR(tr.rent_date, 'yyyy-mm-dd'), ' ') "대여날짜", 
+NVL(tm.name, ' ') "대여회원",
+nvl2(tr.bcode, '반납', '대여') "반남/대여"
+FROM tb_book tb, tb_rent tr, tb_member tm
+WHERE tb.bcode = tr.bcode(+) and tr.mcode=tm.mcode(+);
+SELECT * FROM vbStatus;
 
 CREATE OR REPLACE VIEW vbStatusB
 AS
@@ -84,7 +91,7 @@ SELECT * FROM vbStatusR;
 
 CREATE OR REPLACE VIEW vTemp
 AS
-SELECT tr.mCode mCode, COUNT(tr.bCode) nRent 
+SELECT tr.mCode mCode, COUNT(*) nRent 
 FROM tb_rent tr
 GROUP BY tr.mCode;
 
@@ -97,5 +104,7 @@ FROM vTemp v, tb_member tm
 WHERE v.mcode = tm.mcode;
 
 SELECT * FROM vmList;
+
+
 
 COMMIT;
