@@ -136,15 +136,16 @@ public class LDao {
 			preparedStatement = connection.prepareStatement(query);
 			rs = preparedStatement.executeQuery();
 			while (rs.next()) {
+				String nRent = rs.getString("nRent");
 				String bName = rs.getString("책이름");
 				String bType = rs.getString("책장르");
 				String isRented = rs.getString("대여상태");
 				String rDate = rs.getString("대여날짜");
 				String mName = rs.getString("대여회원");
 				String Rent = rs.getString("반납/대여");
-				System.out.printf("bName: %10s, Jarn: %10s, isRented: %s, rDate: %10s, mName: %10s, Rent: %s%n", 
-						bName, bType, isRented, rDate, mName, Rent);
-				LDto dto = new LDto(bName, bType, isRented, rDate, mName, Rent);
+				System.out.printf("nRent: %s, bName: %10s, Jarn: %10s, isRented: %s, rDate: %10s, mName: %10s, Rent: %s%n", 
+						nRent, bName, bType, isRented, rDate, mName, Rent);
+				LDto dto = new LDto(nRent, bName, bType, isRented, rDate, mName, Rent);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {

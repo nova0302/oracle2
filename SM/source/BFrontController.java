@@ -99,6 +99,11 @@ public class BFrontController extends HttpServlet {
 			//command = new LStatusCommand(0);
 			//command.execute(request, response);
 			viewPage = "testView.jsp";	
+		}else if(com.equals("/deleteItem.do")){/*   도서검색 */
+			System.out.println("deleteItem!!");
+			//command = new LStatusCommand(0);
+			//command.execute(request, response);
+			viewPage = "testView.jsp";	
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

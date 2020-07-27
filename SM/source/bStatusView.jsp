@@ -46,7 +46,11 @@ for(int i=0; i<dtos.size() ; i++){
 <td><%= dto.getmIsRented() %> </td>
 <td><%= dto.getmRDate() %> </td>
 <td><%= dto.getmMName() %> </td>
-<td><%= dto.getmRent()	%> </td>
+<td id='<%= i %>'> 
+<a href='deleteItem.do'> 
+<%= dto.getmRent()	%> 
+</a>
+</td>
 </tr>
 <%
 }

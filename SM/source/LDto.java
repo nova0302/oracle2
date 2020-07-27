@@ -2,16 +2,23 @@ package com.javalec.ex.dto;
 
 public class LDto {
 
-	String mBName, mBType, mIsRented, mRDate, mMName, mRent;
+	String mnRent, mBName, mBType, mIsRented, mRDate, mMName, mRent;
 	public LDto() {}
-	public LDto(String mBName, String mBType, String isRented, String mRDate, String mMName, String Rent) 
+	public LDto(String nRent, String mBName, String mBType, String isRented, String mRDate, String mMName, String Rent) 
 	{
+		this.mnRent  = nRent;
 		this.mBName = mBName;
 		this.mBType = mBType;
 		this.mIsRented = isRented;
 		this.mRDate = mRDate;
 		this.mMName = mMName;
 		this.mRent = Rent;
+	}
+	public String getMnRent() {
+		return mnRent;
+	}
+	public void setMnRent(String mnRent) {
+		this.mnRent = mnRent;
 	}
 	public String getmIsRented() {
 		return mIsRented;
