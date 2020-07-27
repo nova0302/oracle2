@@ -70,7 +70,7 @@ tb.type "책장르",
 NVL2(tr.bcode,'대여중', '대여가능') "대여상태", 
 NVL(TO_CHAR(tr.rent_date, 'yyyy-mm-dd'), ' ') "대여날짜", 
 NVL(tm.name, ' ') "대여회원",
-nvl2(tr.bcode, '반납', '대여') "반남/대여"
+nvl2(tr.bcode, '반납', '대여') "반납/대여"
 FROM tb_book tb, tb_rent tr, tb_member tm
 WHERE tb.bcode = tr.bcode(+) and tr.mcode=tm.mcode(+);
 SELECT * FROM vbStatus;
