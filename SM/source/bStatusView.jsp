@@ -56,7 +56,9 @@ for(int i=0; i<dtos.size() ; i++){
 }
 %>
 
+
 </table>
+<p id="demo"></p>
 <footer>
 <h4>Copyright @ 12020 SMC. All right reserved</h4>
 </footer>
@@ -65,10 +67,18 @@ for(int i=0; i<dtos.size() ; i++){
 	function fn_search() {
 		var child = window.open("bSearchView.jsp", "검색", "width=300px,height=150px;");
 		child.addEventListener("message", function(e) {
-		System.out.println(e);
+			var url = "bSearch.do?";
+			for(key in e.data){
+				url +="&";
+				url +=key;
+				url +="=";
+				url +=e.data[key];
+			}
+		//document.getElementById("demo").innerHTML = url;				
 			//var result = e.data.split(':');
 			//location.href="index.jsp?section=select&opt=" + result[0] + "&value=" + result[1];
-			location.href = "testView.jsp";
+			//location.href = "testView.jsp";
+			location.href = url;
 		});
 	}	
 </script>

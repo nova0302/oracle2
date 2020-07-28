@@ -17,8 +17,6 @@ import com.javalec.ex.dto.LMDto;
 public class LDao {
 	DataSource dataSource;
 	public LDao() {
-		// TODO Auto-generated constructor stub
-		
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
@@ -162,5 +160,49 @@ public class LDao {
 		}
 		return dtos;
 	}	
+	
+	public ArrayList<LDto> bSearch(String bName, String bType, String mName){
+		ArrayList<LDto> dtos = new ArrayList<LDto>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		
+		/*DBCP로부터 Connection을 얻고, 데이터베이스와 관련된 필요한 작어블 시작한다.*/
+		try {
+			connection = dataSource.getConnection();
+			String query = "SELECT * FROM vbStatus v WHERE ";
+			if(bName != null && bName != "") query += " v.\"책이름\"=" + "'"+ bName+ "'";
+			if(bType != null && bType != "") query += " v.\"책장르\"=" + "'"+ bType+ "'";
+			if(mName != null && mName != "") query += " v.\"대여회원\"=" + "'"+ mName+ "'";
+			System.out.println(query);
+			preparedStatement = connection.prepareStatement(query);		
+			rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				String nRent = rs.getString("nRent");
+				String bbName = rs.getString("책이름");
+				String bbType = rs.getString("책장르");
+				String isRented = rs.getString("대여상태");
+				String rDate = rs.getString("대여날짜");
+				String mmName = rs.getString("대여회원");
+				String Rent = rs.getString("반납/대여");
+				System.out.printf("nRent: %s, bName: %10s, Jarn: %10s, isRented: %s, rDate: %10s, mName: %10s, Rent: %s%n", 
+						nRent, bbName, bbType, isRented, rDate, mmName, Rent);
+				LDto dto = new LDto(nRent, bbName, bbType, isRented, rDate, mmName, Rent);
+				dtos.add(dto);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		return dtos;
+	}
 
 }
