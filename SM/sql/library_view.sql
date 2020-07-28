@@ -64,7 +64,8 @@ DELETE FROM tb_book WHERE type IS NULL;
 
 CREATE OR REPLACE VIEW vbStatus
 AS
-SELECT 
+SELECT
+NVL(TO_CHAR(tr.nrent), ' ') "nRent",
 tb.name "책이름", 
 tb.type "책장르", 
 NVL2(tr.bcode,'대여중', '대여가능') "대여상태", 
@@ -72,7 +73,8 @@ NVL(TO_CHAR(tr.rent_date, 'yyyy-mm-dd'), ' ') "대여날짜",
 NVL(tm.name, ' ') "대여회원",
 nvl2(tr.bcode, '반납', '대여') "반납/대여"
 FROM tb_book tb, tb_rent tr, tb_member tm
-WHERE tb.bcode = tr.bcode(+) and tr.mcode=tm.mcode(+);
+WHERE tb.bcode = tr.bcode(+) and tr.mcode=tm.mcode(+)
+ORDER BY 1;
 SELECT * FROM vbStatus;
 
 CREATE OR REPLACE VIEW vbStatusB
