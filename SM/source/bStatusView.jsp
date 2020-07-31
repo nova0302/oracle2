@@ -1,3 +1,4 @@
+<%@ page import="java.io.PrintWriter"%>
 <%@ page import="com.javalec.ex.dto.LDto" %>
 <%@ page import="java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -18,6 +19,9 @@
 <%! 
 ArrayList<LDto> dtos=null;
 LDto dto=null;
+PrintWriter pw = null;
+String isRented="";
+
 %>
 
 <table border="1">
@@ -36,29 +40,53 @@ LDto dto=null;
 </tr>
 
 <%
+pw = response.getWriter();
 dtos = (ArrayList<LDto>)request.getAttribute("bStatusView");
 for(int i=0; i<dtos.size() ; i++){
 	dto = dtos.get(i);
+	isRented = dto.getmIsRented();
 %>
 <tr>
 <td><%= dto.getmBName() %></td>
 <td><%= dto.getmBType() %> </td>
-<td><%= dto.getmIsRented() %> </td>
+<td><%= isRented %> </td>
 <td><%= dto.getmRDate() %> </td>
 <td><%= dto.getmMName() %> </td>
-<td id='<%= i %>'> 
-<a href='returnTheBook.do?nRent=<%= dto.getMnRent()  %>'> 
-<%= dto.getmRent()	%> 
-</a>
+
+<td> 
+
+<%
+if(isRented.equals("대여중"))
+{
+%>
+
+
+<a href="returnTheBook.do?nRent=<%= dto.getMnRent()%>"> <%= dto.getmRent()	%></a>
+
+<%
+}else{
+%>
+
+<a href="#" onclick="fn_rent()"> <%= dto.getmRent()	%></a>
+
+<%
+}
+%>
+
+
 </td>
+
 </tr>
+
 <%
 }
 %>
 
 
 </table>
+
 <p id="demo"></p>
+
 <footer>
 <h4>Copyright @ 12020 SMC. All right reserved</h4>
 </footer>
@@ -80,7 +108,26 @@ for(int i=0; i<dtos.size() ; i++){
 			//location.href = "testView.jsp";
 			location.href = url;
 		});
+	}
+	function fn_rent() {
+		var popHeight=200; var popWidth = 350;
+		
+		var winHeight = document.body.clientHeight;	// 현재창의 높이
+		var winWidth = document.body.clientWidth;	// 현재창의 너비
+		var winX = window.screenLeft;	// 현재창의 x좌표
+		var winY = window.screenTop;	// 현재창의 y좌표
+
+		var popX = winX + (winWidth - popWidth)/2;
+		var popY = winY + (winHeight - popHeight)/2;
+		var child = window.open("rentPopupView.jsp","대여","width="+popWidth+"px,height="+popHeight+"px,top="+popY+",left="+popX);
+		
+		child.addEventListener("message", function(e) {
+			var result = e.data.split(':');
+			location.href="rentTheBook.do?bCode=" + result[0] + "&mCode=" + result[1];		
+		});
+
 	}	
+	
 </script>
 </body>
 </html>

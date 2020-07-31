@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.javalec.ex.dto.LBDto;
 import com.javalec.ex.dto.LDto;
 import com.javalec.ex.dto.LMDto;
 
@@ -92,15 +93,53 @@ public class LDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String query = "SELECT * FROM vmList";
+			String query = "SELECT * FROM tb_member";
 			preparedStatement = connection.prepareStatement(query);
 			rs = preparedStatement.executeQuery();
 			System.out.println("DAO");
 			while (rs.next()) {
-				String mName = rs.getString("n");
-				String mTel = rs.getString("t");
-				int num = rs.getInt("nRent");
-				LMDto dto = new LMDto(mName, mTel, num);
+				String mCode = rs.getString("mcode");
+				String mName = rs.getString("name");
+				String mTel = rs.getString("tel");
+				LMDto dto = new LMDto(mCode, mName, mTel);
+				System.out.printf("mcode: %s, name: %s, tel: %s%n", mCode, mName,  mTel);
+				dtos.add(dto);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		return dtos;
+	}
+	
+	public ArrayList<LBDto> bList(){
+		ArrayList<LBDto> dtos = new ArrayList<LBDto>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		
+		/*DBCP로부터 Connection을 얻고, 데이터베이스와 관련된 필요한 작어블 시작한다.*/
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "SELECT * FROM tb_book";
+			preparedStatement = connection.prepareStatement(query);
+			rs = preparedStatement.executeQuery();
+			System.out.println("DAO");
+			while (rs.next()) {
+				String bCode = rs.getString(1);
+				String bName = rs.getString(2);
+				String Type = rs.getString(3);
+				
+				LBDto dto = new LBDto(bCode, bName, Type);
 				//System.out.printf("name: %15s, tel: %s%n", mName,  mTel);
 				dtos.add(dto);
 			}
@@ -214,6 +253,29 @@ public class LDao {
 			String query = "DELETE FROM tb_rent WHERE nRent='"+nRent+"'";
 			preparedStatement = connection.prepareStatement(query);
 			//preparedStatement.setString(1, nRent);	
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public void rentTheBook(String bCode, String mCode) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "INSERT INOT tb_rent VALUES(seq_rent.NEXTVAL,?,?)";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, bCode);
+			preparedStatement.setString(2, mCode);	
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

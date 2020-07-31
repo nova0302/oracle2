@@ -109,6 +109,14 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response);
 			
 			viewPage = "bStatusView.jsp";	
+		}else if(com.equals("/rentTheBook.do")){/*   도서반환 */
+			System.out.println("rentTheBook!!");
+			command = new LReturnTheBookCommand();
+			command.execute(request, response);
+			command = new LStatusCommand(0);
+			command.execute(request, response);
+			
+			viewPage = "bStatusView.jsp";	
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
