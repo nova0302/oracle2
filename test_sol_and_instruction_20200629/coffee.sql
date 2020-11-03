@@ -1,6 +1,6 @@
 /*삭제하기전, constraint(foreign key) 를 삭제*/
-ALTER TABLE tbl_salelist_01 DROP CONSTRAINT FK_PCODE;
-ALTER TABLE tbl_salelist_01 DROP CONSTRAINT FK_SCODE;
+ALTER TABLE tbl_salelist_01 DROP CONSTRAINT fk_pcode;
+ALTER TABLE tbl_salelist_01 DROP CONSTRAINT fk_scode;
 
 /* 테이블삭제 */
 DROP TABLE tbl_product_01; 
@@ -27,8 +27,8 @@ pcode    VARCHAR2(10) NOT NULL,
 saledate DATE,
 scode    VARCHAR2(10) NOT NULL,
 amount   NUMBER(10),
-CONSTRAINT FK_SCODE FOREIGN KEY(scode) REFERENCES tbl_shop_01(scode),
-CONSTRAINT FK_PCODE FOREIGN KEY(pcode) REFERENCES tbl_product_01(pcode)
+CONSTRAINT fk_scode FOREIGN KEY(scode) REFERENCES tbl_shop_01(scode),
+CONSTRAINT fk_pcodE FOREIGN KEY(pcode) REFERENCES tbl_product_01(pcode)
 );
 
 /* 제품 record 입력*/

@@ -606,12 +606,18 @@ out.println(Arrays.toString(iArr)+ "<br/>");
      - C:\>sqlplus scott/tiger
        
 **** Basic Settings
+     - SQL>HELP INDEX
+     - SQL>HELP COL[UMN]
+     - SQL>HELP SET
      - SQL>COL cost 999999
      - SQL>COL name A15
      - SQL>COL pcode A10
+     - SQL>CLEAR COLUMNS 
      - SQL>SET LINESIZE 200 --> number of characters on a line
      - SQL>SET PAGESIZE 30 --> ??
      - SQL>SHOW ALL --> show all setting values(linesize, pagesize)
+     - SQL>SET AUTOCOMMIT {ON|OFF}
+     - SQL>SELECT name FROM v$database
 
 **** 테이블 만들기
      - SQL>CREATE CREATE TABLE member(
@@ -636,9 +642,6 @@ out.println(Arrays.toString(iArr)+ "<br/>");
 
 **** 테이블 내용 확인
      - SQL>SELECT * FROM member;
-
-**** 레코드 삭제
-     - SQL>DELETE FROM member WHERE name='홍길동';
 
 **** 데이터 수정
      - SQL>UPDATE 테이블이름 SET 컬럼이름=값, 컬럼이름=값, 조건; 
@@ -762,8 +765,8 @@ SELECT seq_no.CURRVAL FROM dual;
 #+END_SRC
     
 *** 데이터베이스 이름 및 user확인
-    - SQL>select * form global_name;
-    - SQL>show user;
+    - SQL>SELECT * FORM global_name;
+    - SQL>SHOW user;
       
 *** [[https://javaconceptoftheday.com/difference-between-executequery-executeupdate-execute-in-jdbc/][extcuteUpdate vs executeQuery]] 
     - executeQuery -> SELECT
@@ -1207,5 +1210,16 @@ function update(){
   - shutdown immediate
   - startup
   - [[https://stackoverflow.com/questions/19766963/passing-arraylist-from-servlet-to-jsp]]
+    
+* [[https://medium.com/@codebyamir/java-servlet-essentials-sendredirect-vs-forward-90d22fb0ee26][sendRedirect vs Forwarding]] 
+  
+** Redirection
+   - is a type of response sent back to the brower to instruct it to fetch another page.
+   - The URL in the brower address bar will change here.
+** Forwarding
+   - happends server-side, and the result of the forward action is returned to the brower.
+   - The URL in the brower address bar will not change so teh action is transparent to the user.
+     
+** 26강 참조
 
 
