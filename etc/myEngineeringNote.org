@@ -594,10 +594,10 @@ out.println(Arrays.toString(iArr)+ "<br/>");
      - C:\>sqlplus system/1234
 
 **** add user as scott with pwd tiger
-     - SQL>create user scott identified by tiger;
+     - SQL>CREATE USER scott IDENTIFIED BY tiger;
 
 **** 권한주기
-     - SQL>grant connect, resource to scott;
+     - SQL>GRANT CONNECT, RESOURCE TO scott;
 
 **** 빠져나오고
      - SQL>exit
