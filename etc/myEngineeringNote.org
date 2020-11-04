@@ -609,9 +609,9 @@ out.println(Arrays.toString(iArr)+ "<br/>");
      - SQL>HELP INDEX
      - SQL>HELP COL[UMN]
      - SQL>HELP SET
-     - SQL>COL cost 999999
-     - SQL>COL name A15
-     - SQL>COL pcode A10
+     - SQL>COL cost FORMAT 999999
+     - SQL>COL name FORMAT a15
+     - SQL>COL pcode FORMAT a10
      - SQL>CLEAR COLUMNS 
      - SQL>SET LINESIZE 200 --> number of characters on a line
      - SQL>SET PAGESIZE 30 --> ??
