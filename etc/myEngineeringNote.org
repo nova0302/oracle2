@@ -606,12 +606,14 @@ out.println(Arrays.toString(iArr)+ "<br/>");
      - C:\>sqlplus scott/tiger
        
 **** Basic Settings
+     - SQL>SHOW USER
      - SQL>HELP INDEX
      - SQL>HELP COL[UMN]
      - SQL>HELP SET
      - SQL>COL cost FORMAT 999999
      - SQL>COL name FORMAT a15
      - SQL>COL pcode FORMAT a10
+     - SQL>COL pcode HEADING 'Product Code'
      - SQL>CLEAR COLUMNS 
      - SQL>SET LINESIZE 200 --> number of characters on a line
      - SQL>SET PAGESIZE 30 --> ??
