@@ -604,22 +604,23 @@ out.println(Arrays.toString(iArr)+ "<br/>");
 
 **** scott으로 로그인
      - C:\>sqlplus scott/tiger
+     - SQL>SET sqlprompt "_USER>"
        
 **** Basic Settings
-     - SQL>SHOW USER
-     - SQL>HELP INDEX
-     - SQL>HELP COL[UMN]
-     - SQL>HELP SET
-     - SQL>COL cost FORMAT 999999
-     - SQL>COL name FORMAT a15
-     - SQL>COL pcode FORMAT a10
-     - SQL>COL pcode HEADING 'Product Code'
-     - SQL>CLEAR COLUMNS 
-     - SQL>SET LINESIZE 200 --> number of characters on a line
-     - SQL>SET PAGESIZE 30 --> ??
-     - SQL>SHOW ALL --> show all setting values(linesize, pagesize)
-     - SQL>SET AUTOCOMMIT {ON|OFF}
-     - SQL>SELECT name FROM v$database
+     - SCOTT>SHOW USER
+     - SCOTT>HELP INDEX
+     - SCOTT>HELP COL[UMN]
+     - SCOTT>HELP SET
+     - SCOTT>COL cost FORMAT 999999
+     - SCOTT>COL name FORMAT a15
+     - SCOTT>COL pcode FORMAT a10
+     - SCOTT>COL pcode HEADING 'Product Code'
+     - SCOTT>CLEAR COLUMNS 
+     - SCOTT>SET LINESIZE 200 --> number of characters on a line
+     - SCOTT>SET PAGESIZE 30 --> ??
+     - SCOTT>SHOW ALL --> show all setting values(linesize, pagesize)
+     - SCOTT>SET AUTOCOMMIT {ON|OFF}
+     - SCOTT>SELECT name FROM v$database
 
 **** 테이블 만들기
      - SQL>CREATE CREATE TABLE member(
