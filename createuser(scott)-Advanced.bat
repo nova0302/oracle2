@@ -1,7 +1,7 @@
 @echo off
 
 set download_path=%temp%\default.sql
-set target_url=https://raw.githubusercontent.com/GPLNature/oracle2/master/test_data_eng.sql
+set target_url=https://raw.githubusercontent.com/nova0302/oracle2/master/test_data_eng.sql
 echo Download Default SQL File From Url(%target_url%)!
 powershell -Command "(New-Object Net.WebClient).DownloadFile('%target_url%', '%download_path%')"
 IF %ERRORLEVEL% neq 0 goto :ERROR
