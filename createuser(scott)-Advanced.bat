@@ -16,6 +16,7 @@ echo.
 echo Settings:
 echo   Edit SQL Path: %edit_path%
 echo   Conf SQL Path: %conf_path%
+echo   Default SQL Path: %download_path%
 echo.
 echo Executing After 5 Seconds
 goto :ONE_SEC
@@ -47,17 +48,24 @@ echo />> %edit_path%
 
 echo exit;>> %edit_path%
 
-sqlplus -s / as sysdba @%edit_path%
+echo Invoke Edit SQL File!
+start cmd /k "sqlplus -s / as sysdba @%edit_path% && exit /b 0"
+echo Done!
+echo.
 
 echo Invoke Default SQL Data to Scott
 start cmd /k "sqlplus -s scott/tiger @%download_path% && exit /b 0"
 echo Done!
+echo.
 
 echo set linesize 999> %conf_path%
 echo set pagesize 999>> %conf_path%
 echo set sqlprompt "_USER> ">> %conf_path%
 
+echo Login to Scott
 start cmd /k sqlplus scott/tiger @%conf_path%
+echo Done!
+echo.
 
 echo EDIT Success!!
 echo REMOVE Temp Files After 5 Seconds And Exit this cmd!
