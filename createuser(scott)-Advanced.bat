@@ -1,4 +1,5 @@
 @echo off
+REM Made By GPLNature/문준상 (https://github.com/GPLNature)
 
 set download_path=%temp%\default.sql
 set target_url=https://raw.githubusercontent.com/nova0302/oracle2/master/test_data_eng.sql

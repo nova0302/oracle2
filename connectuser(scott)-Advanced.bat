@@ -1,4 +1,6 @@
 @echo off
+REM Made By GPLNature/문준상 (https://github.com/GPLNature)
+
 set conf_path=%temp%\conf.sql
 
 echo set linesize 999> %conf_path%
