@@ -2,15 +2,16 @@
 
 set download_path=%temp%\default.sql
 set target_url=https://raw.githubusercontent.com/GPLNature/oracle2/master/test_data_eng.sql
+set edit_path=%temp%\local.sql
+set conf_path=%temp%\conf.sql
+set count=5
+
 echo Download Default SQL File From Url(%target_url%)!
 powershell -Command "(New-Object Net.WebClient).DownloadFile('%target_url%', '%download_path%')"
 IF %ERRORLEVEL% neq 0 goto :ERROR
 echo exit;>> %download_path%
 echo Download Done!
-
-set edit_path=%temp%\local.sql
-set conf_path=%temp%\conf.sql
-set count=5
+echo.
 
 echo Settings:
 echo   Edit SQL Path: %edit_path%
@@ -54,11 +55,12 @@ echo Done!
 
 echo set linesize 999> %conf_path%
 echo set pagesize 999>> %conf_path%
+echo set sqlprompt "_USER> ">> %conf_path%
 
 start cmd /k sqlplus scott/tiger @%conf_path%
 
 echo EDIT Success!!
-echo REMOVE Temp Files After 5 Seconds!
+echo REMOVE Temp Files After 5 Seconds And Exit this cmd!
 
 timeout /t 5
 
@@ -66,8 +68,6 @@ del %edit_path%
 del %conf_path%
 del %download_path%
 
-echo Done..!
-pause
 exit /b 0
 
 :ERROR
