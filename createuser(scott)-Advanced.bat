@@ -1,7 +1,7 @@
 @echo off
 
 set download_path=%temp%\default.sql
-set target_url=https://raw.githubusercontent.com/GPLNature/oracle2/master/test_data_eng.sql
+set target_url=https://raw.githubusercontent.com/nova0302/oracle2/master/test_data_eng.sql
 set edit_path=%temp%\local.sql
 set conf_path=%temp%\conf.sql
 set count=5
