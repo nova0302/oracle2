@@ -1,0 +1,87 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+ul { list-style: none; }
+li { margin-bottom: 0.5em; }
+</style>
+</head>
+<body>
+	<form action="HJ" method="get">
+		<ul>
+			<li>
+				<label for="id_dan">원하는 구구단: </label> 
+				<input type="number" name="dan" id="id_dan" 
+				autofocus>
+			</li>
+			<li>
+				<label for="id_dan2">테스트</label> 
+				<input type="number" name="dan2" id="id_dan2">
+			</li>
+		</ul>
+		<input type="submit" value="전송">
+		<input type="reset" value="초기화">
+	</form>
+</body>
+</html>
+
+
+--------------------------------------
+package edu.smh.ex;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/HJ")
+public class HelloJsp extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	public HelloJsp() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int dan = Integer.parseInt(request.getParameter("dan"));
+		System.out.printf("dan: %d\n", dan);
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		writer.append("<!doctype html><head>" 
+				+ "<style>td{width:8em;}</style>" 
+				+ "</head><body><h1>구구단</h1>");
+		writer.append("<table border='1'>");
+		writer.append("<tr>");
+		for (int i = 1; i < 5; i++) {
+			writer.append("<th>" + i + "단</th>");
+		}
+		writer.append("</tr>");
+		for (int i = 2; i < dan; i++) {
+			writer.append("<tr>");
+			for (int j = 2; j < 6; j++) {
+				String s = 
+						String.format("<td>%d*%d=%d</td>", i, j, i * j);
+				writer.append(s);
+			}
+			writer.append("</tr>");
+		}
+		writer.append("</table></body>");
+		writer.close();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int dan = Integer.parseInt(request.getParameter("dan"));
+		System.out.printf("dan: %d\n", dan);
+	}
+
+}
